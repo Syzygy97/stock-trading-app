@@ -1,5 +1,6 @@
 class PortfoliosController < ApplicationController
   def index
+    @portfolios = Portfolio.all
   end
 
   def show
@@ -19,4 +20,5 @@ class PortfoliosController < ApplicationController
 
   def destroy
   end
+  
 end
