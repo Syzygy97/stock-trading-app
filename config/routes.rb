@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admins
+  devise_for :users
   get 'homes/index'
   get 'stocks/index'
   get 'stocks/show'
