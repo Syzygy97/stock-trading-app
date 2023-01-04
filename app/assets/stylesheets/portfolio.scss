@@ -1,9 +1,113 @@
+$sidebar-width: 15vw;
+$portfolio-content-width: calc(100vw - #{$sidebar-width});
+$header-height: 8vh;
+$main-height: calc(100vh - #{$header-height});
+
+#portfolio-container,
+.portfolio-content,
+.welcome-message,
+.user-info,
+header {
+  display: flex;
+}
 #portfolio-container {
-  height: 100%;
+  height: 100vh;
+  border: 2px solid black;
+  width: 100vw;
+}
+.portfolio-content {
+  width: $portfolio-content-width;
+  flex-direction: column;
+}
+
+aside,
+header,
+main {
+  padding: 0.5em 1em;
 }
 
 aside {
-  width: 15vw;
-  height: 100vh;
+  width: $sidebar-width;
+  height: 100%;
   border: 2px solid black;
+  color: rgb(255, 102, 0);
+}
+
+header {
+  justify-content: space-between;
+  align-items: center;
+  height: $header-height;
+  border-bottom: 2px solid black;
+
+  .welcome-message {
+    flex-direction: column;
+
+    h4 {
+      opacity: 0.7;
+    }
+  }
+  .user-info {
+    justify-content: center;
+    align-items: center;
+    gap: 0.7em;
+    font-size: 25px;
+  }
+}
+.grid-1 {
+  grid-area: grid1;
+}
+.grid-2 {
+  grid-area: grid2;
+}
+.grid-3 {
+  grid-area: grid3;
+}
+.grid-4 {
+  grid-area: grid4;
+}
+.grid-5 {
+  grid-area: grid5;
+}
+.grid-6 {
+  grid-area: grid6;
+}
+.grid-7 {
+  grid-area: grid7;
+}
+.dashboard {
+  height: $main-height;
+  display: grid;
+  gap: 1em;
+  grid-template-areas:
+    "grid1 grid2 grid3"
+    "grid4 grid5 grid6"
+    "grid4 grid7 grid7";
+
+  figure {
+    border: 1px solid black;
+    border-radius: 25px;
+  }
+
+  .grid-1,
+  .grid-4 {
+    width: calc(#{$portfolio-content-width} * 0.6 - 2em);
+  }
+  .grid-1,
+  .grid-2,
+  .grid-3,
+  .grid-5,
+  .grid-6 {
+    height: calc(#{$main-height} * 0.4 - 1.5em);
+  }
+  .grid-2,
+  .grid-5 {
+    width: calc(#{$portfolio-content-width} * 0.25 - 2em);
+  }
+  .grid-3,
+  .grid-6 {
+    width: calc(#{$portfolio-content-width} * 0.17 - 2em);
+  }
+  .grid-7 {
+    height: calc(#{$main-height} * 0.2 - 1.5em);
+  }
 }
