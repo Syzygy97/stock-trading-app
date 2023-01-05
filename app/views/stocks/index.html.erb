@@ -20,7 +20,7 @@
       <div class="stock-price">
         <h2>Price</h2>
         <ul>
-          <li>228.04</li>
+          <li><%= @client.quote("MSFT")["latest_price"]%></li>
           <li>126.63</li>
         </ul>
       </div>
