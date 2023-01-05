@@ -50,6 +50,8 @@ gem 'devise', '~> 4.8', '>= 4.8.1'
 
 gem "rspec-rails", "~> 6.0"
 
+gem 'iex-ruby-client'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

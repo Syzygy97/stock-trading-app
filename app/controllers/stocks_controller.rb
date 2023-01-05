@@ -1,5 +1,6 @@
 class StocksController < ApplicationController
   def index
+    @client = IEX::Api::Client.new
   end
 
   def show
