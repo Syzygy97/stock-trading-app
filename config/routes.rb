@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   end
   
   get 'homes/index'
+  
   get 'stocks/index'
   get 'stocks/show'
   get 'stocks/new'
@@ -33,6 +34,7 @@ Rails.application.routes.draw do
   get 'stocks/edit'
   get 'stocks/update'
   get 'stocks/destroy'
+
   get 'portfolios/index'
   get 'portfolios/show'
   get 'portfolios/new'
@@ -40,6 +42,10 @@ Rails.application.routes.draw do
   get 'portfolios/edit'
   get 'portfolios/update'
   get 'portfolios/destroy'
+
+  get 'histories/index'
+  get 'histories/show'
+  get 'histories/delete'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
