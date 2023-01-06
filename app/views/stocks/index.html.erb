@@ -29,9 +29,13 @@
       </div>
       <div class="stock-delta">
         <h2>Change</h2>
-        <% @client.stock_market_list(:mostactive).map(&:change_percent).each do |item| %>
+        <% @client.stock_market_list(:mostactive).map(&:change).each do |item| %>
           <ul>
-            <li><%= item %></li>
+            <% if item.to_f > 0 %>
+              <li style="color: green"><%= item %></li>
+            <% elsif item.to_f < 0 %>
+              <li style="color: red"><%= item %></li>
+            <% end %>
           </ul>
         <% end %>
       </div>
@@ -39,7 +43,11 @@
         <h2>%Change</h2>
         <% @client.stock_market_list(:mostactive).map(&:change_percent_s).each do |item| %>
           <ul>
-            <li>(<%= item %>)</li>
+            <% if item.to_f > 0 %>
+              <li style="color: green">(<%= item %>)</li>
+            <% elsif item.to_f < 0 %>
+              <li style="color: red">(<%= item %>)</li>
+            <% end %>
           </ul>
         <% end %>
       </div>
