@@ -23,7 +23,7 @@
         <h2>Price</h2>
         <% @client.stock_market_list(:mostactive).map(&:latest_price).each do |item| %>
           <ul>
-            <li><%= item %></li>
+            <li>$ <%= item %></li>
           </ul>
         <% end %>
       </div>
