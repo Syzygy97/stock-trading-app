@@ -5,38 +5,51 @@
     <main class="stocks-dashboard">
       <div class="stock-name">
         <h2>Company</h2>
-        <ul>
-          <li>Microsoft Corp</li>
-          <li>Apple Inc</li>
-        </ul>
+        <% @client.stock_market_list(:mostactive).map(&:company_name).each do |item| %>
+          <ul>
+            <li><%= item %></li>
+          </ul>
+        <% end %>
       </div>
       <div class="stock-symbol">
         <h2>Symbol</h2>
-        <ul>
-          <li>MSFT</li>
-          <li>AAPL</li>
-        </ul>
+        <% @client.stock_market_list(:mostactive).map(&:symbol).each do |item| %>
+          <ul>
+            <li><%= item %></li>
+          </ul>
+        <% end %>
       </div>
       <div class="stock-price">
         <h2>Price</h2>
-        <ul>
-          <li><%= @client.quote("MSFT")["latest_price"]%></li>
-          <li>126.63</li>
-        </ul>
+        <% @client.stock_market_list(:mostactive).map(&:latest_price).each do |item| %>
+          <ul>
+            <li>$ <%= item %></li>
+          </ul>
+        <% end %>
       </div>
       <div class="stock-delta">
         <h2>Change</h2>
-        <ul>
-          <li>-11.54</li>
-          <li>1.56</li>
-        </ul>
+        <% @client.stock_market_list(:mostactive).map(&:change).each do |item| %>
+          <ul>
+            <% if item.to_f > 0 %>
+              <li style="color: green"><%= item %></li>
+            <% elsif item.to_f < 0 %>
+              <li style="color: red"><%= item %></li>
+            <% end %>
+          </ul>
+        <% end %>
       </div>
       <div class="stock-percent-delta">
         <h2>%Change</h2>
-        <ul>
-          <li>(-4.82%)</li>
-          <li>(1.24%)</li>
-        </ul>
+        <% @client.stock_market_list(:mostactive).map(&:change_percent_s).each do |item| %>
+          <ul>
+            <% if item.to_f > 0 %>
+              <li style="color: green">(<%= item %>)</li>
+            <% elsif item.to_f < 0 %>
+              <li style="color: red">(<%= item %>)</li>
+            <% end %>
+          </ul>
+        <% end %>
       </div>
       <div class="stock-options">
         <h2 class="forex-rate">Forex($1 USD -> PHP): 55.84 PHP </h2>
