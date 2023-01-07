@@ -1,18 +1,20 @@
-<ul>
-  <li><%= link_to "Portfolio Index Page", portfolios_index_path %></li>
-  <li><%= link_to "Stock Index Page", stocks_index_path %></li>
-  <% if user_signed_in? %>
-    <li><%= link_to "Sign Out", destroy_user_session_path, data: { "turbo-method": :delete } %></li>
-  <% elsif !admin_signed_in? %>
-    <li><%= link_to "Sign In", new_user_session_path %></li>
-  <% end %>
-
-  <% if admin_signed_in? %>
-    <li><%= link_to "Sign Out as Admin", destroy_admin_session_path, data: { "turbo-method": :delete } %></li>
-  <% elsif !user_signed_in? %>
-    <li><%= link_to "Sign In as Admin", new_admin_session_path %></li>
-  <% end %>
-</ul>
-
-<h1>Home Page</h1>
-<p>Find me in app/views/homes/index.html.erb</p>
+<div class="container container-lp">
+  <%= render "shared/navbar" %>
+  <div class="wrapper">
+    <div class="lp-details">
+      <div class="lp-details-cont">
+        <div class="lp-details-1">WELCOME TO //NAME//</div>
+        <div class="lp-details-2">//Selling Tagline//</div>
+        <div class="lp-details-3">//app description//</div>
+        <div class="lp-details-btn">
+          <button>
+            <%= link_to "Get Started", new_user_registration_path %>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="lp-photo">
+      <div></div>
+    </div>
+  </div>
+</div>
