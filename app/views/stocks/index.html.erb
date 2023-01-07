@@ -1,2 +1,67 @@
-<h1>Stocks#index</h1>
-<p>Find me in app/views/stocks/index.html.erb</p>
+<div id="stocks-container">
+  <%= render "portfolios/sidebar"%>
+  <div class="stocks-content">
+    <%= render "portfolios/header"%>
+    <main class="stocks-dashboard">
+      <div class="stock-name">
+        <h2>Company</h2>
+        <% @client.stock_market_list(:mostactive).map(&:company_name).each do |item| %>
+          <ul>
+            <li><%= item %></li>
+          </ul>
+        <% end %>
+      </div>
+      <div class="stock-symbol">
+        <h2>Symbol</h2>
+        <% @client.stock_market_list(:mostactive).map(&:symbol).each do |item| %>
+          <ul>
+            <li><%= item %></li>
+          </ul>
+        <% end %>
+      </div>
+      <div class="stock-price">
+        <h2>Price</h2>
+        <% @client.stock_market_list(:mostactive).map(&:latest_price).each do |item| %>
+          <ul>
+            <li>$ <%= item %></li>
+          </ul>
+        <% end %>
+      </div>
+      <div class="stock-delta">
+        <h2>Change</h2>
+        <% @client.stock_market_list(:mostactive).map(&:change).each do |item| %>
+          <ul>
+            <% if item.to_f > 0 %>
+              <li style="color: green"><%= item %></li>
+            <% elsif item.to_f < 0 %>
+              <li style="color: red"><%= item %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+      <div class="stock-percent-delta">
+        <h2>%Change</h2>
+        <% @client.stock_market_list(:mostactive).map(&:change_percent_s).each do |item| %>
+          <ul>
+            <% if item.to_f > 0 %>
+              <li style="color: green">(<%= item %>)</li>
+            <% elsif item.to_f < 0 %>
+              <li style="color: red">(<%= item %>)</li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+      <div class="stock-options">
+        <h2 class="forex-rate">Forex($1 USD -> PHP): 55.84 PHP </h2>
+        <div>
+          <button>BUY</button>
+          <button>SELL</button>
+        </div>
+        <div>
+          <button>BUY</button>
+          <button>SELL</button>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
