@@ -13,6 +13,11 @@ $sec-font: 'Montserrat', sans-serif;
   }
 }
 
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
 .container-lp {
   background-image: url('lp-bg.png');
 }
@@ -50,6 +55,10 @@ $sec-font: 'Montserrat', sans-serif;
       a {
         width: 50%;
         text-align: right;
+      }
+
+      .sign-out {
+        width: 100%;
       }
 
       button {
