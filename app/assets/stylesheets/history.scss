@@ -1,0 +1,37 @@
+#history-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+.history-content {
+  width: 100%;
+}
+.history-dashboard {
+  height: calc(100vh - 8vh);
+  // width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+
+  div {
+    width: 100%;
+    height: 50%;
+  }
+}
+
+.transaction-graph {
+  border: 2px solid black;
+  border-radius: 25px;
+  height: 100%;
+}
+
+.transaction-type {
+  display: flex;
+  gap: 1em;
+
+  figure {
+    width: 50%;
+    border: 2px solid black;
+    border-radius: 25px;
+  }
+}
