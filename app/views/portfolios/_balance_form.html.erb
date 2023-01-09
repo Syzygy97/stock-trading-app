@@ -1,0 +1,16 @@
+<%= form_with(model: @portfolio, data: { turbo: false }) do |form| %>
+  
+  <div class = "portfolio-form">
+    <%= form.number_field :balance %>
+  </div>
+
+  <div class="transaction-option">
+    <div class="deposit-btn">
+      <%= form.submit "Deposit"%>
+    </div>
+    <div class="withdraw-btn">
+      <%= form.submit "Withdraw"%>
+    </div>
+  </div>
+
+<% end %>
