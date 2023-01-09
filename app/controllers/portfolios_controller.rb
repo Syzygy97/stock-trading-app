@@ -26,6 +26,11 @@ class PortfoliosController < ApplicationController
   end
 
   def update
+    # if @portfolio.update(portfolio_params)
+    #   redirect_to portfolios_path
+    # else
+    #   render :edit
+    # end
   end
 
   def destroy
