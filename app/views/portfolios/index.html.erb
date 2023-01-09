@@ -12,10 +12,10 @@
       <figure class="grid-7">
         <div class="balance">
           <h4>Wallet Balance</h4>
-          <h3>₱ 0.00</h3>
+          <h3>₱ <%= @portfolios.first.balance %></h3>
         </div>
         <div class="change-balance">
-          <%= render "balance_form"%>
+          <%= render "new_balance_form"%>
         </div>
       </figure>
     </main>
