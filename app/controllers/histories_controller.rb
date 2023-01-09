@@ -5,6 +5,6 @@ class HistoriesController < ApplicationController
   def show
   end
 
-  def delete
+  def destroy
   end
 end

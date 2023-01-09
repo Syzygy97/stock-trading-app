@@ -30,22 +30,22 @@ Rails.application.routes.draw do
   get 'stocks/index'
   get 'stocks/show'
   get 'stocks/new'
-  get 'stocks/create'
+  post 'stocks/create'
   get 'stocks/edit'
-  get 'stocks/update'
-  get 'stocks/destroy'
+  patch 'stocks/update'
+  delete 'stocks/destroy'
 
   get 'portfolios/index'
   get 'portfolios/show'
   get 'portfolios/new'
-  get 'portfolios/create'
+  post 'portfolios/create'
   get 'portfolios/edit'
-  get 'portfolios/update'
-  get 'portfolios/destroy'
+  patch 'portfolios/update'
+  delete 'portfolios/destroy'
 
   get 'histories/index'
   get 'histories/show'
-  get 'histories/delete'
+  delete 'histories/destroy'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
