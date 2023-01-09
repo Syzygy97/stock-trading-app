@@ -26,11 +26,15 @@ class PortfoliosController < ApplicationController
   end
 
   def update
-    # if @portfolio.update(portfolio_params)
-    #   redirect_to portfolios_path
-    # else
-    #   render :edit
-    # end
+    if params[:commit] == "Deposit"
+      result = @portfolio.balance.to_f + portfolio_params[:balance].to_f
+    else
+      result = @portfolio.balance.to_f - portfolio_params[:balance].to_f
+    end
+
+    if @portfolio.update(balance: result)
+      redirect_to portfolios_path
+    end
   end
 
   def destroy

@@ -12,10 +12,10 @@
       <figure class="grid-7">
         <div class="balance">
           <h3>Wallet Balance</h3>
-          <h1>$ <%= @portfolios.first.balance %></h1>
+          <h1><%= number_to_currency(@portfolios.first.balance, :unit => "$") %></h1>
         </div>
         <div class="change-balance">
-          <%= render "new_balance_form"%>
+          <%= render "new_balance_form", portfolio: @portfolios.first %>
         </div>
       </figure>
     </main>
