@@ -1,15 +1,15 @@
-<%= form_with(model: @portfolio, data: { turbo: false }) do |form| %>
+<%= form_with(model: portfolio, data: { turbo: false }, method: :patch) do |form| %>
   
   <div class = "portfolio-form">
-    <%= form.number_field :balance %>
+    <%= form.number_field :balance, autocomplete: "off", value: nil, step: 0.01 %>
   </div>
 
   <div class="transaction-option">
     <div class="deposit-btn">
-      <%= form.submit "Deposit"%>
+      <%= form.submit "Deposit" %>
     </div>
     <div class="withdraw-btn">
-      <%= form.submit "Withdraw"%>
+      <%= form.submit "Withdraw" %>
     </div>
   </div>
 
