@@ -1,4 +1,4 @@
-class StocksController < ApplicationController
+class Users::StocksController < ApplicationController
   def index
     @client = IEX::Api::Client.new
   end
