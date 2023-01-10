@@ -1,4 +1,4 @@
-<%= form_with(model: portfolio, data: { turbo: false }, method: :patch) do |form| %>
+<%= form_with(url: users_update_portfolio_url(portfolio), scope: :portfolio, data: { turbo: false }, method: :patch) do |form| %>
   
   <div class = "portfolio-form">
     <%= form.number_field :balance, autocomplete: "off", value: nil, step: 0.01 %>
