@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'orders/index'
+  get 'orders/new'
+  get 'orders/create'
+  get 'orders/edit'
+  get 'orders/update'
+  get 'orders/destroy'
   devise_for :users, path: 'users', controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
