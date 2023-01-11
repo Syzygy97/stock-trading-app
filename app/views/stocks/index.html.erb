@@ -4,7 +4,7 @@
     <%= render "portfolios/header"%>
     <main class="stocks-dashboard">
       <div class="stock-name">
-        <h2>Company</h2>
+        <h2>Company (most-active)</h2>
         <% @client.stock_market_list(:mostactive).map(&:company_name).each do |item| %>
           <ul>
             <li><%= item %></li>
