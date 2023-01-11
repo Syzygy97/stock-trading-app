@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+  get 'trader_stocks/index'
+  get 'trader_stocks/show'
+  get 'trader_stocks/new'
+  get 'trader_stocks/create'
+  get 'trader_stocks/edit'
+  get 'trader_stocks/update'
+  get 'trader_stocks/destroy'
+  get 'orders/index'
+  get 'orders/new'
+  get 'orders/create'
+  get 'orders/edit'
+  get 'orders/update'
+  get 'orders/destroy'
   devise_for :users, path: 'users', controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
