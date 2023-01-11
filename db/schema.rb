@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_10_135239) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_11_092706) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,10 +29,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_10_135239) do
   create_table "histories", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "stock_id"
-    t.bigint "buyer_id"
     t.decimal "price"
     t.integer "quantity"
+    t.bigint "stock_id", null: false
+    t.bigint "portfolio_id", null: false
+    t.index ["portfolio_id"], name: "index_histories_on_portfolio_id"
+    t.index ["stock_id"], name: "index_histories_on_stock_id"
   end
 
   create_table "homes", force: :cascade do |t|
@@ -41,13 +43,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_10_135239) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "stock_id"
     t.string "order_type"
     t.decimal "price"
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "portfolio_id", null: false
+    t.bigint "stock_id", null: false
+    t.index ["portfolio_id"], name: "index_orders_on_portfolio_id"
+    t.index ["stock_id"], name: "index_orders_on_stock_id"
   end
 
   create_table "portfolios", force: :cascade do |t|
@@ -70,12 +74,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_10_135239) do
   end
 
   create_table "trader_stocks", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "stock_id"
     t.decimal "price"
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "portfolio_id", null: false
+    t.bigint "stock_id", null: false
+    t.index ["portfolio_id"], name: "index_trader_stocks_on_portfolio_id"
+    t.index ["stock_id"], name: "index_trader_stocks_on_stock_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -90,4 +96,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_10_135239) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "histories", "portfolios"
+  add_foreign_key "histories", "stocks"
+  add_foreign_key "orders", "portfolios"
+  add_foreign_key "orders", "stocks"
+  add_foreign_key "trader_stocks", "portfolios"
+  add_foreign_key "trader_stocks", "stocks"
 end
