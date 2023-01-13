@@ -1,4 +1,4 @@
-class Users::HistoriesController < ApplicationController
+class HistoriesController < ApplicationController
   def index
   end
 

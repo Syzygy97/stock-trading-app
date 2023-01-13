@@ -1,4 +1,4 @@
-class Users::PortfoliosController < ApplicationController
+class PortfoliosController < ApplicationController
   before_action :set_portfolio, only: %i[ show edit update destroy ]
 
   def index
@@ -16,7 +16,7 @@ class Users::PortfoliosController < ApplicationController
     @portfolio = Portfolio.new(portfolio_params)
 
     if @portfolio.save
-      redirect_to users_portfolios_path
+      redirect_to portfolios_path
     else
       render :new
     end
@@ -33,7 +33,7 @@ class Users::PortfoliosController < ApplicationController
     end
 
     if @portfolio.update(balance: result)
-      redirect_to users_portfolios_path
+      redirect_to portfolios_path
     end
   end
 
