@@ -4,7 +4,7 @@ $header-height: 8vh;
 $main-height: calc(100vh - #{$header-height});
 
 #portfolio-container {
-  background-color: (#071742);
+  background-color: rgb(14, 21, 40);
   color: white;
 }
 
@@ -322,8 +322,10 @@ header {
 
 .grid-5 {
   display: flex;
-  // background-color: rgb(21, 32, 60);
+  justify-content: center;
+  align-items: center;
   background-color: (#071742);
+
   div {
     height: 100%;
     text-align: center;
@@ -350,8 +352,11 @@ header {
   li {
     list-style: none;
     height: 10%;
-    padding: 1% 0;
     width: 100%;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   li:nth-child(odd) {
@@ -364,4 +369,10 @@ header {
     vertical-align: middle;
     border-radius: 3px;
   }
+}
+
+figure.grid-5 {
+  padding: 0;
+  overflow: hidden;
+  border: none;
 }

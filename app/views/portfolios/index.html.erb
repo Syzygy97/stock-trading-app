@@ -42,9 +42,9 @@
           <ul>
           <% @client.stock_market_list(:mostactive).map(&:change_percent_s).each do |stock| %>
             <% if stock.to_f > 0 %>
-              <li><span style="color: green">(<%= stock %></span>)</li>
+              <li><span style="color: green">(<%= stock %>)</span></li>
             <% elsif stock.to_f < 0 %>
-              <li><span style="color: red">(<%= stock %></span>)</li>
+              <li><span style="color: red">(<%= stock %>)</span></li>
             <% end %>
           <% end %>
           </ul>
