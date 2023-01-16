@@ -7,9 +7,17 @@
         <div class="lp-details-2">//Selling Tagline//</div>
         <div class="lp-details-3">//app description//</div>
         <div class="lp-details-btn">
-          <button>
-            <%= link_to "Get Started", new_user_registration_path %>
-          </button>
+        <% if current_user %>
+          <% if current_user.approved? %>
+            <button>
+              <%= link_to "Portfolio", users_portfolios_path %>
+            </button>
+          <% else %>
+            <button>
+              <%= link_to "Get Started", new_user_registration_path %>
+            </button>
+          <% end %>
+        <% end %>
         </div>
       </div>
     </div>
