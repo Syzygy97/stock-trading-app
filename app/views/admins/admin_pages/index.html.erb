@@ -1,0 +1,5 @@
+<% @users.each do |user| %>
+  <p>Hello, <%= user.email %></p>
+  <%= user.status %>
+  <%= button_to "Approve", admins_admin_pages_approved_user_path(id: user.id), method: 'put' %>
+<% end %>
