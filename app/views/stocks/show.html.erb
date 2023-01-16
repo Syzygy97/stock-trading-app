@@ -7,3 +7,5 @@
 <h3><%= @client.news(@stock.symbol).first.headline %></h3>
 <img src="<%= @stock.logo %>">
 
+<h1>BUY NOW</h1>
+<button><%= link_to "BUY", new_stock_order_path(@stock) %></button>

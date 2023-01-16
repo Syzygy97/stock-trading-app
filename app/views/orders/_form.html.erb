@@ -1,0 +1,26 @@
+<%= form_with model: [@stock, @order] do |f| %>
+  <% if @order.errors.any? %>
+    <ul>
+    <% @order.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    </ul>
+    <% end %>
+  <% end %>
+  <div>
+    <%= f.label :order_type %>
+    <br>
+    <%= f.select :order_type, options_for_select(["BUY", "SELL"]) %>
+  </div>
+  
+  <div>
+    <%= f.label :price %>:
+    $<%= f.number_field :price, value: @stock.price%>
+  </div>
+  <div>
+    <%= f.label :quantity %>
+    <%= f.number_field :quantity, step: 1, min: 1 %> (Available: <%= @stock.quantity %>)
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
