@@ -6,6 +6,7 @@ class PortfoliosController < ApplicationController
   end
 
   def show
+    @client = IEX::Api::Client.new
   end
 
   def new
@@ -16,7 +17,7 @@ class PortfoliosController < ApplicationController
     @portfolio = Portfolio.new(portfolio_params)
 
     if @portfolio.save
-      redirect_to portfolios_path
+      redirect_to @portfolio
     else
       render :new
     end
@@ -24,6 +25,7 @@ class PortfoliosController < ApplicationController
 
   def edit
   end
+
 
   def update
     if params[:commit] == "Deposit"
@@ -33,9 +35,11 @@ class PortfoliosController < ApplicationController
     end
 
     if @portfolio.update(balance: result)
-      redirect_to portfolios_path
+      redirect_to @portfolio
     end
   end
+
+
 
   def destroy
   end
@@ -47,7 +51,7 @@ class PortfoliosController < ApplicationController
     end
 
     def portfolio_params
-      params.require(:portfolio).permit(:balance)
+      params.require(:portfolio).permit(:balance, :username, :firstname, :lastname)
     end
 
 end

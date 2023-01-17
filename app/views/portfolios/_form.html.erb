@@ -1,8 +1,15 @@
-<%= form_with(model: @portfolio, data: { turbo: false }) do |form| %>
+<%= form_with(model: @portfolio, data: { turbo: false }) do |f| %>
 
-  <%= form.number_field :balance, value: 0.00, type: :hidden %>
+  <%= f.label :balance %>
+  <h4><%= f.number_field :balance %></h4>
+  <%= f.label :username %>
+  <h4><%= f.text_field :username %></h4>
+  <%= f.label :first_name %>
+  <h4><%= f.text_field :first_name %></h4>
+  <%= f.label :last_name %>
+  <h4><%= f.text_field :last_name %></h4>
 
-  <%= form.submit "Create Portfolio" %>
+  <%= f.submit "Create Portfolio" %>
 
 <% end %>
 

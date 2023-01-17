@@ -5,9 +5,8 @@
   <div class="sidebar-list">
     <ul>
       <h3>MENU</h3>
-      <li><%= link_to "Dashboard", portfolios_path %></li>
-      <%# <li><%= link_to "Orders", stock_orders_path %></li> 
-      <li><%= link_to "Stocks List", stocks_path %></li>
+      <li><%= link_to "Dashboard", @portfolio %></li>
+      <li><%= link_to "Stocks", portfolio_stocks_path(@portfolio) %></li> 
       <li><%= link_to "History", histories_path %></li>
       <li>Settings</li>
     </ul>

@@ -7,7 +7,7 @@
         <h2>Company (most-active)</h2>
         <% @stocks.each do |stock| %>
           <ul>
-            <li><%= link_to stock.company_name, stock %></li>
+            <li><%= link_to stock.company_name, portfolio_stock_path(@portfolio, stock.id) %></li>
           </ul>
         <% end %>
       </div>

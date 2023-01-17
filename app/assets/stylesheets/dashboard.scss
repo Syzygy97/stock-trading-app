@@ -3,7 +3,8 @@ $portfolio-content-width: calc(100vw - #{$sidebar-width});
 $header-height: 8vh;
 $main-height: calc(100vh - #{$header-height});
 
-#portfolio-container {
+#portfolio-container,
+#stocks-container {
   background-color: rgb(14, 21, 40);
   color: white;
 }

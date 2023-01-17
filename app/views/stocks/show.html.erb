@@ -8,4 +8,4 @@
 <img src="<%= @stock.logo %>">
 
 <h1>BUY NOW</h1>
-<button><%= link_to "BUY", new_stock_order_path(@stock) %></button>
+<button><%= link_to "BUY", new_portfolio_stock_order_path(@portfolio, @stock) %></button>

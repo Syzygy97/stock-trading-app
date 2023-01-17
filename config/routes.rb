@@ -12,20 +12,22 @@ Rails.application.routes.draw do
 
   get 'homes/index'
 
-  get 'portfolios', to: "portfolios#index", as: "portfolios"
-  get 'portfolios/:id', to: "portfolios#show", as: "portfolio"
-  get 'portfolio/new', to: "portfolios#new", as: "new_portfolio"
-  post 'portfolios', to: "portfolios#create"
-  get 'portfolios/:id/edit', to: "portfolios#edit", as: "edit_portfolio"
-  patch 'portfolios/:id', to: "portfolios#update", as: "update_portfolio"
-  delete 'portfolios/:id', to: "portfolios#destroy"
+  # get 'portfolios', to: "portfolios#index", as: "portfolios"
+  # get 'portfolios/:id', to: "portfolios#show", as: "portfolio"
+  # get 'portfolio/new', to: "portfolios#new", as: "new_portfolio"
+  # post 'portfolios', to: "portfolios#create"
+  # get 'portfolios/:id/edit', to: "portfolios#edit", as: "edit_portfolio"
+  # patch 'portfolios/:id', to: "portfolios#update", as: "update_portfolio"
+  # delete 'portfolios/:id', to: "portfolios#destroy"
   
   get 'histories', to: "histories#index", as: "histories"
   get 'histories/:id', to: "histories#show", as: "history"
   delete 'histories/:id', to: "histories#destroy"
 
-  resources :stocks do
-    resources :orders
+  resources :portfolios do
+    resources :stocks do
+      resources :orders
+    end
   end
 
   # get 'trader_stocks/index'
