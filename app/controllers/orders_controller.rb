@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  # before_action :set_portfolio, only: %i[ index new create]
+  before_action :set_portfolio, only: %i[ index new create]
   before_action :set_stock, only: %i[ index new create]
   before_action :set_order, only: %i[ show edit update destroy ]
   # before_action :set_stock, only: %i[new create edit update destroy]
@@ -20,9 +20,10 @@ class OrdersController < ApplicationController
   def create
     @order = @stock.orders.new(order_params)
     
+    debugger
     if @order.save
       # redirect_to portfolio_stock_orders_path, notice: "Order was successful."
-      redirect_to portfolio_stock_path(@portfolio, stock.id), notice: "Order was successful."
+      redirect_to portfolio_stock_path(portfolio.id, stock.id), notice: "Order was successful."
     else
       redirect_to new_portfolio_stock_order_path(@portfolio, @stock), alert: "Order was unsuccessful."
       
@@ -56,8 +57,8 @@ class OrdersController < ApplicationController
     @portfolio = Portfolio.find(params[:portfolio_id])
   end
   def set_stock
-    # set_portfolio
-    @stock = Stock.find(params[:stock_id])
+    set_portfolio
+    @stock = @portfolio.stocks.find(params[:stock_id])
   end
 
   def set_order
