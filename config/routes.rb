@@ -14,7 +14,12 @@ Rails.application.routes.draw do
   # get 'orders/update'
   # get 'orders/destroy'
   
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'users/registrations' }
+  
+  get 'homes/index'
+  get "/dashboard", to: "dashboard#index"
+  
+  root to: "dashboard#index"
 
   resources :trader_stocks
   resources :orders
@@ -63,7 +68,6 @@ Rails.application.routes.draw do
     end
   end
   
-  get 'homes/index'
   
   # get 'stocks', to: "stocks#index", as: "stocks"
   # get 'stocks/:id', to: "stocks#show", as: "stock"
@@ -87,5 +91,4 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root "homes#index"
 end
