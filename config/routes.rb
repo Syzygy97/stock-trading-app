@@ -52,7 +52,8 @@ Rails.application.routes.draw do
   devise_scope :admin do
     authenticated :admin do
       namespace :admins do
-        get 'dashboard/index', as: :authenticated_root
+        get 'admin_pages/index', as: :authenticated_root
+        put 'admin_pages/approved_user', to: "admin_pages#approve_user"
       end
     end
   end
