@@ -3,18 +3,32 @@
   <div class="wrapper">
     <div class="lp-details">
       <div class="lp-details-cont">
+        <% if !user_signed_in? %>
         <div class="lp-details-1">WELCOME TO //NAME//</div>
         <div class="lp-details-2">//Selling Tagline//</div>
         <div class="lp-details-3">//app description//</div>
         <div class="lp-details-btn">
+          <button>
+            <%= link_to "Get Started", new_user_registration_path %>
+          </button>
+        <% end %>
         <% if current_user %>
           <% if current_user.approved? %>
+            <div class="lp-details-1">Account has been approved. You can now start trading.</div>
+            <%# <div class="lp-details-2">//Selling Tagline//</div> %>
+            <div class="lp-details-3"> </div>
+            <div class="lp-details-btn">
             <button>
               <%= link_to "Portfolio", users_portfolios_path %>
             </button>
           <% else %>
+            <div class="lp-details-1">Successfully registered. Welcome to //name//, <%= current_user.email %>!</div>
+            <%# <div class="lp-details-2">//Selling Tagline//</div> %>
+            <div class="lp-details-3">Kindly wait for your account approval.</div>
+            <div class="lp-details-btn">
             <button>
-              <%= link_to "Get Started", new_user_registration_path %>
+              <%#= link_to "Back", new_user_registration_path %>
+              <%= link_to "Back", destroy_user_session_path, class: "sign-out", data: { "turbo-method": :delete } %>
             </button>
           <% end %>
         <% end %>

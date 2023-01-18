@@ -25,7 +25,8 @@ Rails.application.routes.draw do
   devise_scope :user do
     authenticated :user do
       namespace :users do
-        get 'portfolios/index', as: :authenticated_root
+        get 'homes/index', as: :authenticated_root
+        # get 'portfolios/index'
         get 'portfolios', to: "portfolios#index", as: "portfolios"
         get 'portfolios/:id', to: "portfolios#show", as: "portfolio"
         get 'portfolio/new', to: "portfolios#new", as: "new_portfolio"
@@ -54,6 +55,8 @@ Rails.application.routes.draw do
       namespace :admins do
         get 'admin_pages/index', as: :authenticated_root
         put 'admin_pages/approved_user', to: "admin_pages#approve_user"
+        get 'add_user', to: 'admin_pages#add_user'
+        post 'create_user', to: 'admin_pages#create_user'
       end
     end
   end
