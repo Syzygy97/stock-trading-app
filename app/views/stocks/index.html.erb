@@ -1,13 +1,13 @@
 <div id="stocks-container">
-  <%= render "users/portfolios/sidebar"%>
+  <%= render "users/sidebar"%>
   <div class="stocks-content">
-    <%= render "users/portfolios/header"%>
+    <%= render "users/header"%>
     <main class="stocks-dashboard">
       <div class="stock-name">
         <h2>Company (most-active)</h2>
-        <% @client.stock_market_list(:mostactive).map(&:company_name).each do |item| %>
+        <% @stocks.each do |stock| %>
           <ul>
-            <li><%= item %></li>
+            <li><%= link_to stock.company_name, stock %></li>
           </ul>
         <% end %>
       </div>

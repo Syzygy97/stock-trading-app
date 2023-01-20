@@ -17,17 +17,19 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'users/registrations' }
   
   get 'homes/index'
-  get "/dashboard", to: "dashboard#index"
   
-  root to: "dashboard#index"
+  root to: "users#index"
+  
+  get 'dashboard', to: "users#index", as: "dashboard"
+  patch 'users/:id', to: "users#update", as: "update_user"
 
   resources :trader_stocks
   resources :orders
   resources :stocks
   # devise_for :users, path: 'users', controllers: {
-  #   sessions: 'users/sessions',
-  #   registrations: 'users/registrations'
-  # }
+    #   sessions: 'users/sessions',
+    #   registrations: 'users/registrations'
+    # }
 
   # devise_scope :user do
   #   authenticated :user do
