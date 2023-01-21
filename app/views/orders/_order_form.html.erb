@@ -1,7 +1,7 @@
 <%= form_with model: @order do |f| %>
   
   <div>
-    <%= f.text_field :symbol, value: @stock.last.symbol, type: :hidden %>
+    <%= f.text_field :symbol, value: @stock.symbol, type: :hidden %>
   </div>
 
   <div>
@@ -16,12 +16,12 @@
   
   <div>
     <%= f.label :price %>:
-    $<%= f.number_field :price, value: @stock.last.price.to_i %>
+    $<%= f.number_field :price, value: @stock.price.to_i %>
   </div>
 
   <div>
     <%= f.label :quantity %>
-    <%= f.number_field :quantity, step: 1, min: 1 %> (Available: <%= @stock.last.quantity %>)
+    <%= f.number_field :quantity, step: 1, min: 1 %> (Available: <%= @stock.quantity %>)
   </div>
 
   <div>

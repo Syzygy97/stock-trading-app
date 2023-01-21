@@ -1,3 +1,27 @@
-<h1>Orders#index</h1>
-
-<h2><%= @orders.last.price %></h2>
+<div id="history-container">
+  <%= render "users/sidebar"%>
+  <div class="history-content">
+    <%= render "users/header"%>
+    <main class="history-dashboard">
+      <div>
+        <figure class="transaction-graph">1</figure>
+      </div>
+      <div class="transaction-type">
+        <figure class="buy-transaction">
+          <h1>BUY</h1>
+          <% @orders.each do |order| %>
+            <% if order.user == current_user %>
+              <ul>
+                <li><%= order.symbol %></li>
+                <li><%= order.price %></li>
+                <li><%= order.quantity %></li>
+              </ul>
+            <% end %>
+          <% end %>
+        </figure>
+        <figure class="sell-transaction">
+          <h1>SELL</h1>
+        </figure>
+      </div>
+  </div>
+</div>

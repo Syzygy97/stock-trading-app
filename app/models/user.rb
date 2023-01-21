@@ -5,4 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
          has_many :trader_stocks
          has_many :orders
+
+  def recalculate_balance price#, order_type
+    # if order_type == "BUY"
+    update(balance: balance + price)
+  end
 end
+
+

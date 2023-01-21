@@ -1,4 +1,9 @@
 <% if user_signed_in? %>
+  <% flash.each do |type, msg| %>
+    <div>
+      <%= msg %>
+    </div>
+  <% end %>
   <%= render "/shared/navbar" %>
   <div id="portfolio-container">
     <%= render "sidebar"%>
@@ -28,7 +33,18 @@
           </div>
         </figure>
         <figure class="grid-3">3</figure>
-        <figure class="grid-4">4</figure>
+        <figure class="grid-4">
+          <h1>MY STOCKS</h1>
+          <% @trader_stocks.each do |trader_stock| %>
+            <% if trader_stock.user == current_user %>
+              <ul>
+                <li><%= trader_stock.symbol %></li>
+                <li><%= trader_stock.price %></li>
+                <li><%= trader_stock.quantity %></li>
+              </ul>
+            <% end %>
+          <% end %>
+        </figure>
         <figure class="grid-5">5</figure>
         <figure class="grid-6">6</figure>
         <figure class="grid-7">

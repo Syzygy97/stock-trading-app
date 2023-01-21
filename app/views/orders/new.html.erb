@@ -1,9 +1,9 @@
-<% flash.each do |type, msg| %>
-  <div>
-    <%= msg %>
-  </div>
-<% end %>
+<h1>CREATE AN ORDER FOR <%= @stock.company_name%></h1>
 
-<h1>CREATE AN ORDER FOR <%= @stock.last.company_name%></h1>
+<% flash.each do |type, msg| %>
+    <div>
+      <%= msg %>
+    </div>
+  <% end %>
 
 <%= render "order_form" %>
