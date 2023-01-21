@@ -1,0 +1,30 @@
+<%= form_with model: @order do |f| %>
+  
+  <div>
+    <%= f.text_field :symbol, value: @stock.last.symbol, type: :hidden %>
+  </div>
+
+  <div>
+    <%= f.number_field :user_id, value: current_user.id, type: :hidden %>
+  </div>
+
+  <div>
+    <%= f.label :order_type %>
+    <br>
+    <%= f.select :order_type, options_for_select(["BUY", "SELL"]) %>
+  </div>
+  
+  <div>
+    <%= f.label :price %>:
+    $<%= f.number_field :price, value: @stock.last.price.to_i %>
+  </div>
+
+  <div>
+    <%= f.label :quantity %>
+    <%= f.number_field :quantity, step: 1, min: 1 %> (Available: <%= @stock.last.quantity %>)
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
