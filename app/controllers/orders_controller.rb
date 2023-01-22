@@ -18,6 +18,8 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     # @order.user_balance_sufficient?
     
+    # @order.check_if_user_can_sell_trader_stocks #@trader_stocks
+
     # @order.recalculate_user_balance
     # debugger
     # if order_params[:order_type] == "BUY"
@@ -27,7 +29,7 @@ class OrdersController < ApplicationController
     # debugger
 
     ### PUT A VALIDATION CHECK TO DETERMINE IF USER HAVE TRADER STOCKS || ENOUGH TRADER STOCKS QUANTITY
-
+    # debugger
     if @order.save
       # @order.order_type == "BUY" ? price = -@order.price : price = @order.price
       if @order.order_type == "BUY"
