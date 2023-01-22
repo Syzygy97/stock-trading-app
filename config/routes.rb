@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   
   get 'homes/index'
   
+  # root "homes#index"
   root to: "users#index"
   
   get 'dashboard', to: "users#index", as: "dashboard"

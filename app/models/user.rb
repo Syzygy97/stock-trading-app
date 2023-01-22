@@ -6,7 +6,7 @@ class User < ApplicationRecord
          has_many :trader_stocks
          has_many :orders
 
-  def recalculate_balance price#, order_type
+  def recalculate_balance price
     # if order_type == "BUY"
     update(balance: balance + price)
   end

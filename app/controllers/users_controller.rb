@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ update ]
+  before_action :authenticate_user!
 
   def index
     @users = current_user

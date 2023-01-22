@@ -17,27 +17,32 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     # @order.user_balance_sufficient?
     
-    # @order.calculate_user_balance
+    # @order.recalculate_user_balance
     # debugger
     # if order_params[:order_type] == "BUY"
     # else
 
     # end
+    # debugger
     if @order.save
-      @order.order_type == "BUY" ? price = -@order.price : price = @order.price
-      # if @order.order_type == "BUY"
-      #   price = -@order.price
-      # else
-      #   price = @order.price
-      # end 
-      current_user.recalculate_balance price
+      # @order.order_type == "BUY" ? price = -@order.price : price = @order.price
+      if @order.order_type == "BUY"
+        order_price = -@order.price
+        order_quantity = -@order.quantity
+        @trader_stock = TraderStock.create(
+          :user_id => order_params[:user_id].to_i,
+          :symbol => order_params[:symbol],
+          :price => order_params[:price].to_i,
+          :quantity => order_params[:quantity].to_i
+        )
+      else
+        order_price = @order.price
+        order_quantity = @order.quantity
+      end 
+      current_user.recalculate_balance order_price
+      @stock.update_stock_quantity order_quantity
       # debugger
-      @trader_stock = TraderStock.create(
-        :user_id => order_params[:user_id].to_i,
-        :symbol => order_params[:symbol],
-        :price => order_params[:price].to_i,
-        :quantity => order_params[:quantity].to_i
-      )
+      
       redirect_to orders_path, notice: "Order was successful."
     else
       redirect_to new_order_path(user_id: current_user.id, symbol: @stock.symbol), alert: "Order was unsuccessful."
