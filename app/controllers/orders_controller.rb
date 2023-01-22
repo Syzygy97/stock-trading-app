@@ -14,6 +14,7 @@ class OrdersController < ApplicationController
 
   def create
     @stock = Stock.find_by(symbol: order_params[:symbol])
+    @trader_stocks = TraderStock.all.where(user_id: current_user.id)
     @order = Order.new(order_params)
     # @order.user_balance_sufficient?
     
@@ -24,20 +25,32 @@ class OrdersController < ApplicationController
 
     # end
     # debugger
+
+    ### PUT A VALIDATION CHECK TO DETERMINE IF USER HAVE TRADER STOCKS || ENOUGH TRADER STOCKS QUANTITY
+
     if @order.save
       # @order.order_type == "BUY" ? price = -@order.price : price = @order.price
       if @order.order_type == "BUY"
         order_price = -@order.price
         order_quantity = -@order.quantity
-        @trader_stock = TraderStock.create(
-          :user_id => order_params[:user_id].to_i,
-          :symbol => order_params[:symbol],
-          :price => order_params[:price].to_i,
-          :quantity => order_params[:quantity].to_i
-        )
+
+        if @trader_stocks.map(&:symbol).any? {|sym| sym == @order.symbol} && @trader_stocks.count > 0
+          @trader_stock = @trader_stocks.find_by(symbol: @order.symbol)
+          @trader_stock.add_to_quantity_of_existing_trader_stock @order.quantity
+        else
+          @trader_stock = TraderStock.create(
+            :user_id => order_params[:user_id].to_i,
+            :symbol => order_params[:symbol],
+            :price => order_params[:price].to_i,
+            :quantity => order_params[:quantity].to_i
+          )
+        end
       else
+        # debugger
         order_price = @order.price
         order_quantity = @order.quantity
+        @trader_stock = @trader_stocks.find_by(symbol: @order.symbol)
+        @trader_stock.update_trader_stock_quantity_when_sell order_quantity 
       end 
       current_user.recalculate_balance order_price
       @stock.update_stock_quantity order_quantity

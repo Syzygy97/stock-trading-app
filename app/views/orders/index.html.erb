@@ -10,18 +10,26 @@
         <figure class="buy-transaction">
           <h1>BUY</h1>
           <% @orders.each do |order| %>
-            <% if order.user == current_user %>
+            <% if order.user == current_user && order.order_type == "BUY" %>
               <ul>
                 <li><%= order.symbol %></li>
                 <li><%= order.price %></li>
                 <li><%= order.quantity %></li>
-                <li><%= order.order_type %></li>
               </ul>
             <% end %>
           <% end %>
         </figure>
         <figure class="sell-transaction">
           <h1>SELL</h1>
+          <% @orders.each do |order| %>
+            <% if order.user == current_user && order.order_type == "SELL" %>
+              <ul>
+                <li><%= order.symbol %></li>
+                <li><%= order.price %></li>
+                <li><%= order.quantity %></li>
+              </ul>
+            <% end %>
+          <% end %>
         </figure>
       </div>
   </div>
