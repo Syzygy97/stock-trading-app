@@ -4,9 +4,10 @@ class StocksController < ApplicationController
 
   def index
     @stocks = Stock.all
+    examples = ["BBBY", "TSLA", "AMZN", "AAPL", "BIOR", "AMC", "F", "LCID", "AMD", "MARA"]
     # ten_most_active_quote = @client.stock_market_list(:mostactive)
     # ten_most_active_symbol = ten_most_active_quote.map(&:symbol)
-    # ten_most_active_symbol.each do |symbol|
+    # examples.each do |symbol|
     #   # debugger
     #   @stock = @stocks.find_by(symbol: symbol)
     #   if @stocks.map(&:symbol).any?(symbol)
