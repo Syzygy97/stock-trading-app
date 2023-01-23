@@ -8,4 +8,7 @@ class Stock < ApplicationRecord
     update(quantity: quantity + order_quantity)
   end
 
+  def update_existing_stock_price
+    
+  end
 end

@@ -28,8 +28,6 @@ class OrdersController < ApplicationController
     # end
     # debugger
 
-    ### PUT A VALIDATION CHECK TO DETERMINE IF USER HAVE TRADER STOCKS || ENOUGH TRADER STOCKS QUANTITY
-    # debugger
     if @order.save
       # @order.order_type == "BUY" ? price = -@order.price : price = @order.price
       if @order.order_type == "BUY"
