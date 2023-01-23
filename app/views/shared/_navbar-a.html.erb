@@ -1,0 +1,11 @@
+<div class="navbar bg-blue">
+  <div class="nav-link">
+    <%= link_to image_tag("logo.png"), root_path %>
+    <div class="nav-link right">
+      <% if admin_signed_in? %>
+        <%= link_to "Sign out", destroy_user_session_path, class: "sign-out", data: { "turbo-method": :delete } %>
+      <% else %>
+      <% end %>
+    </div>
+  </div>
+</div>

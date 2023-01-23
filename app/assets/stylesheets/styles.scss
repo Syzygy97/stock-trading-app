@@ -1,8 +1,13 @@
 $main-font: 'Fredoka One', cursive;
 $sec-font: 'Montserrat', sans-serif;
 
+.bg-blue {
+  background-color: #071742;
+}
+
 .container {
   background-size: cover;
+  overflow: hidden;
 
   .wrapper {
     height: 92vh;
@@ -47,6 +52,11 @@ $sec-font: 'Montserrat', sans-serif;
     a {
       text-decoration: none;
       color: white;
+
+      img {
+        width: 8%;
+        height: 8%;
+      }
     }
 
     .right {
@@ -114,13 +124,13 @@ $sec-font: 'Montserrat', sans-serif;
     }
 
     .lp-details-2 {
-      font-size: 10em;
+      font-size: 5em;
       margin-bottom: 0.2em;
     }
 
     .lp-details-3 {
       font-family: $sec-font;
-      font-size: 1.5em;
+      font-size: 1.1em;
       font-weight: 500;
       margin-bottom: 2.5em;
     }
@@ -145,6 +155,194 @@ $sec-font: 'Montserrat', sans-serif;
           text-decoration: none;
           color: #071742;
         }
+      }
+    }
+  }
+}
+
+.li-photo, .li-form {
+  height: 100%;
+  display: grid;
+}
+
+.li-photo {
+  width: 60%;
+  place-items: center;
+
+  div {
+    height: 820px;
+    width: 770px;
+    background-image: url('li-photo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}
+
+.li-form {
+  place-self: center;
+  place-items: center start;
+  width: 30%;
+  height: 20%;
+
+  .title {
+    width: 100%;
+    height: 100%;
+    // margin-bottom: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
+    font-family: $main-font;
+    color: white;
+    font-size: 25px;
+  }
+
+  form {
+    width: 100%;
+
+    .field {
+
+      input {
+        background-color: #ffffff;
+        width: 100%;
+        height: 30px;
+        padding: 8px;
+        border: none;
+        outline: 0;
+        color: black;
+        font-family: $sec-font;
+      }
+
+      input:focus {
+        border: 2px solid #26bde2;
+      }
+    }
+
+    .actions {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      
+      input {
+        width: 100%;
+        height: 30px;
+
+        font-family: $main-font;
+        font-size: 15px;
+        color: #071742;
+        background: #43ef97;
+        outline: none;
+        border: none;
+        border-radius: 15px;
+
+        cursor: pointer;
+      }
+    }
+
+    .li-links {
+      text-align: center;
+      
+      a {
+        color: white;
+        text-decoration: none;
+        font-family: $sec-font;
+        font-size: 70%;
+      }
+    }
+  }
+}
+
+.su-photo, .su-form {
+  height: 100%;
+  display: grid;
+}
+
+.su-photo {
+  width: 57%;
+  place-items: center;
+
+  div {
+    height: 850px;
+    width: 850px;
+    background-image: url('su-photo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}
+
+.su-form {
+  place-self: center;
+  place-items: center start;
+  width: 43%;
+  height: 30%;
+  padding: 0 5% 0 5%;
+
+  .title {
+    width: 100%;
+    height: 100%;
+    // margin-bottom: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
+    font-family: $main-font;
+    color: white;
+    font-size: 25px;
+  }
+
+  form {
+    width: 100%;
+
+    .field {
+
+      input {
+        background-color: #ffffff;
+        width: 100%;
+        height: 30px;
+        padding: 8px;
+        border: none;
+        outline: 0;
+        color: black;
+        font-family: $sec-font;
+      }
+
+      input:focus {
+        border: 2px solid #26bde2;
+      }
+    }
+
+    .actions {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      
+      input {
+        width: 100%;
+        height: 30px;
+
+        font-family: $main-font;
+        font-size: 15px;
+        color: #071742;
+        background: #43ef97;
+        outline: none;
+        border: none;
+        border-radius: 15px;
+
+        cursor: pointer;
+      }
+    }
+
+    .su-links {
+      text-align: center;
+      margin-top: 20px;
+      
+      a {
+        color: white;
+        text-decoration: none;
+        font-family: $sec-font;
+        font-size: 70%;
       }
     }
   }

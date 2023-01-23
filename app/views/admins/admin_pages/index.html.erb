@@ -1,6 +1,41 @@
-<%= render "shared/navbar" %>
-<% @users.each do |user| %>
-  <p>Hello, <%= user.email %></p>
-  <%= user.status %>
-  <%= button_to "Approve", admins_admin_pages_approved_user_path(id: user.id), method: 'put' %>
-<% end %>
+<%= render "shared/navbar-a" %>
+<div class="container-home sc">
+  <div class="list">
+    <div class="list-header">
+      <div>Trader List</div>
+      <div class="buttons">
+        <div><%= link_to "+ Add Trader", admins_add_user_path %></div>
+        <div><%= link_to "Transactions" %></div>
+      </div>
+    </div>
+    <div class="list-container">
+      <div class="heading">
+        <div class="first-column">ID</div>
+        <div class="second-column">First Name</div>
+        <div class="third-column">Last Name</div>
+        <div class="fourth-column">Email</div>
+        <div class="fifth-column">Status</div>
+        <div class="sixth-column">Action</div>
+      </div>
+      <% @users.each do |user| %>
+      <div class="trader">
+        <div class="first-column"><%= user.id %></div>
+        <div class="second-column"></div>
+        <div class="third-column"></div>
+        <div class="fourth-column"><%= user.email %></div>
+        <div class="fifth-column"><%= user.status %></div>
+        <div class="sixth-column">
+          <%= link_to "View" %>
+          <%= link_to "Edit" %>
+          <% if user.status == 'pending' %>
+            <%= button_to "Approve", admins_admin_pages_approved_user_path(id: user.id), method: 'put' %>
+          <% else %>
+            <%= button_to "Approve", admins_admin_pages_approved_user_path(id: user.id), method: 'put', :disabled => true, class: 'disabled' %>
+          <% end %>
+          <div class="red"><%= link_to 'Delete', admins_path(id: user.id), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure you want to remove this user from the system?"} %></div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
