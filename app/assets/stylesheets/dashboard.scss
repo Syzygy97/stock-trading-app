@@ -309,3 +309,13 @@ header {
     }
   }
 }
+.grid-4 {
+  overflow-y: auto;
+}
+
+// Order Index Styles
+
+.buy-transaction,
+.sell-transaction {
+  overflow-y: auto;
+}

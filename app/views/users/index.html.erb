@@ -1,0 +1,67 @@
+<% if user_signed_in? %>
+  <% flash.each do |type, msg| %>
+    <div>
+      <%= msg %>
+    </div>
+  <% end %>
+  <%= render "/shared/navbar" %>
+  <div id="portfolio-container">
+    <%= render "sidebar"%>
+    <div class="portfolio-content">
+      <%= render "header"%>
+      <main class="portfolio-dashboard">
+        <figure class="grid-1">1</figure>
+        <figure class="grid-2">
+          <div class="trade-stock">
+            <select name="stock-name" id="stock-name-dd">
+              <option value="" disabled selected hidden>Select Stock</option>
+              <option value="TSLA">Tesla Inc</option>
+              <option value="AAPL">Apple Inc</option>
+              <option value="AMZN">Amazon.com Inc.</option>
+            </select>
+            <div>
+              <%# <input type="number"/> %>
+              <h2>10</h2>
+              <h3>X</h3>
+              <h2>$119.77</h2>
+            </div>
+            <h2>TOTAL PRICE: $1197.70</h2>
+          </div>
+          <div class="trade-stock-type">
+            <button>BUY</button>
+            <button>SELL</button>
+          </div>
+        </figure>
+        <figure class="grid-3">3</figure>
+        <figure class="grid-4">
+          <h1>MY STOCKS</h1>
+          <% @trader_stocks.each do |trader_stock| %>
+            <% if trader_stock.user == current_user %>
+              <ul>
+                <li><%= trader_stock.symbol %></li>
+                <li><%= trader_stock.price %></li>
+                <li><%= trader_stock.quantity %></li>
+              </ul>
+              <%= link_to "Transact", new_order_path(user_id: current_user.id, symbol: trader_stock.symbol) %>
+            <% end %>
+          <% end %>
+        </figure>
+        <figure class="grid-5">5</figure>
+        <figure class="grid-6">6</figure>
+        <figure class="grid-7">
+          <div class="balance">
+            <h3>Wallet Balance</h3>
+            <h1><%= number_to_currency(current_user.balance, :unit => "$") %></h1>
+          </div>
+          <div class="change-balance">
+            <%= render "new_balance_form" %>
+          </div>
+        </figure>
+      </main>
+    </div>
+  </div>
+<% else %>
+  <%= render "landing_page" %>
+<% end %>
+
+

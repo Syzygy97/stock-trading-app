@@ -1,0 +1,11 @@
+<h1><%= @stock.company_name %> (<%= @stock.symbol %>)</h1>
+<h3>Price: $<%= @stock.price %></h3>
+<h3>Quantity: <%= @stock.quantity %></h3>
+<h2>DESCRIPTION</h2>
+<h3><%= @client.company(@stock.symbol).description %></h3>
+<h2>NEWS</h2>
+<h3><%= @client.news(@stock.symbol).first.headline %></h3>
+<img src="<%= @stock.logo %>">
+
+<h1>BUY NOW</h1>
+<button><%= link_to "BUY", new_order_path(user_id: current_user.id, symbol: @stock.symbol) %></button>
