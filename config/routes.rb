@@ -53,10 +53,11 @@ Rails.application.routes.draw do
   devise_scope :admin do
     authenticated :admin do
       namespace :admins do
-        get 'admin_pages/index', as: :authenticated_root
+        get 'users', to: "admin_pages#index", as: :authenticated_root
         put 'admin_pages/approved_user', to: "admin_pages#approve_user"
         get 'add_user', to: 'admin_pages#add_user'
         post 'create_user', to: 'admin_pages#create_user'
+        delete 'users/:id', to: 'admin_pages#destroy'
       end
     end
   end
