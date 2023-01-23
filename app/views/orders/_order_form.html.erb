@@ -16,7 +16,7 @@
   
   <div>
     <%= f.label :price %>:
-    $<%= f.number_field :price, value: @stock.price.to_i %>
+    $<%= f.number_field :price, value: @stock.price.to_f, readonly: true, style: "pointer-events: none" %>
   </div>
 
   <div>
