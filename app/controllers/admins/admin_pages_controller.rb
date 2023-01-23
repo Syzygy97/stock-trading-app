@@ -30,4 +30,10 @@ class Admins::AdminPagesController < ApplicationController
       redirect_to admins_authenticated_root_path
     end
   end
+
+  def destroy
+    @user = User.find_by(id: params[:id])
+    @user.destroy
+    redirect_to admins_authenticated_root_path
+  end
 end
