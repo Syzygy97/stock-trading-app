@@ -14,16 +14,34 @@
           <%= bar_chart @trader_stocks.where(user_id: current_user.id).group(:symbol).sum(:quantity), height: "100%", xtitle: "Quantity", ytitle: "Symbol" %>
         </figure>
         <figure class="grid-2">
-          <div class="trade-stock">
-            <select name="stock-name" id="stock-name-dd">
+          <div class="trade-stock-header">
+            <h3>TEN RANDOM STOCKS</h3>
+          </div>
+          <div class="trade-stock-content">
+            <% @stocks.sample(10).each do |stock| %>
+              <%= link_to stock do %>
+              <ul>
+                <li><%= stock.symbol %></li>
+                <li><%= number_to_currency(stock.price, :unit => "$") %></li>
+                <% if stock.percent_change.to_f > 0 %>
+                  <li style="color: green">(<%= stock.percent_change.to_f %>%)</li>
+                <% elsif stock.percent_change.to_f < 0 %>
+                  <li style="color: red">(<%= stock.percent_change.to_f %>%)</li>
+                <% end %>
+              </ul>
+              <% end %>
+            <% end %>
+          </div>
+          <%# <div class="trade-stock"> %>
+            <%# <select name="stock-name" id="stock-name-dd">
               <option value="" disabled selected hidden>Select Stock</option>
               <option value="TSLA">Tesla Inc</option>
               <option value="AAPL">Apple Inc</option>
               <option value="AMZN">Amazon.com Inc.</option>
-            </select>
-            <div>
+            </select> %>
+            <%# <div> %>
               <%# <input type="number"/> %>
-              <h2>10</h2>
+              <%# <h2>10</h2>
               <h3>X</h3>
               <h2>$119.77</h2>
             </div>
@@ -32,9 +50,9 @@
           <div class="trade-stock-type">
             <button>BUY</button>
             <button>SELL</button>
-          </div>
+          </div> %>
         </figure>
-        <figure class="grid-3">3</figure>
+        <%# <figure class="grid-3">3</figure> %>
         <figure class="grid-4">
           <h1>MY STOCKS</h1>
           <% if @trader_stocks.count == 0 %>

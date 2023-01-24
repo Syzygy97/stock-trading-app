@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def index
     @users = current_user
     @trader_stocks = TraderStock.where(user_id: current_user.id)
+    @stocks = Stock.all
   end
 
   def update

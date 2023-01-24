@@ -119,7 +119,7 @@ header {
   display: grid;
   gap: 1em;
   grid-template-areas:
-    "grid1 grid2 grid3"
+    "grid1 grid2 grid2"
     "grid4 grid5 grid5"
     "grid4 grid7 grid7";
 
@@ -141,9 +141,11 @@ header {
     height: calc(#{$main-height} * 0.4 - 1.5em);
   }
   .grid-2 {
-    width: calc(#{$portfolio-content-width} * 0.25 - 2em);
+    // width: calc(#{$portfolio-content-width} * 0.25 - 2em);
+    width: auto;
   }
-  .grid-3 {
+  .grid-3,
+  .grid-6 {
     width: calc(#{$portfolio-content-width} * 0.17 - 2em);
   }
   .grid-7 {
@@ -310,37 +312,70 @@ header {
   align-items: center;
   justify-content: center;
 
-  .trade-stock {
-    height: 70%;
+  .trade-stock-header {
+    height: 10%;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     border-bottom: 1px solid black;
-
-    select {
-      height: 20%;
-      width: 100%;
-    }
-
-    div {
-      height: 60%;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      h2 {
-        width: 40%;
-        border: 1px solid black;
-        text-align: center;
-      }
-      h3 {
-        flex-grow: 1;
-        text-align: center;
-      }
+    h3 {
+      text-align: center;
     }
   }
+  .trade-stock-content {
+    height: 90%;
+    width: 100%;
+    overflow-y: auto;
+    // display: flex;
+    // flex-direction: column;
+    a {
+      text-decoration: none;
+      color: white;
+    }
+    ul:hover {
+      background-color: rgba(128, 128, 128, 0.5);
+    }
+    ul {
+      height: 10%;
+      width: 100%;
+    }
+    li {
+      width: calc((100% / 3) - 0.7em);
+      display: inline-flex;
+      justify-content: center;
+      // align-items: center;
+    }
+  }
+
+  // .trade-stock {
+  //   height: 70%;
+  //   width: 100%;
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   border-bottom: 1px solid black;
+
+  //   select {
+  //     height: 20%;
+  //     width: 100%;
+  //   }
+
+  //   div {
+  //     height: 60%;
+  //     width: 100%;
+  //     display: flex;
+  //     justify-content: center;
+  //     align-items: center;
+
+  //     h2 {
+  //       width: 40%;
+  //       border: 1px solid black;
+  //       text-align: center;
+  //     }
+  //     h3 {
+  //       flex-grow: 1;
+  //       text-align: center;
+  //     }
+  //   }
+  // }
 
   .trade-stock-type {
     height: 30%;
