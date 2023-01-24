@@ -120,7 +120,7 @@ header {
   gap: 1em;
   grid-template-areas:
     "grid1 grid2 grid3"
-    "grid4 grid5 grid6"
+    "grid4 grid5 grid5"
     "grid4 grid7 grid7";
 
   figure {
@@ -140,16 +140,17 @@ header {
   .grid-6 {
     height: calc(#{$main-height} * 0.4 - 1.5em);
   }
-  .grid-2,
-  .grid-5 {
+  .grid-2 {
     width: calc(#{$portfolio-content-width} * 0.25 - 2em);
   }
-  .grid-3,
-  .grid-6 {
+  .grid-3 {
     width: calc(#{$portfolio-content-width} * 0.17 - 2em);
   }
   .grid-7 {
     height: calc(#{$main-height} * 0.2 - 1.5em);
+  }
+  .grid-5 {
+    width: auto;
   }
 }
 

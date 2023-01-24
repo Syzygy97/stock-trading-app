@@ -10,7 +10,9 @@
     <div class="portfolio-content">
       <%= render "header"%>
       <main class="portfolio-dashboard">
-        <figure class="grid-1">1</figure>
+        <figure class="grid-1">
+          <%= bar_chart @trader_stocks.where(user_id: current_user.id).group(:symbol).sum(:quantity), height: "100%", xtitle: "Quantity", ytitle: "Symbol" %>
+        </figure>
         <figure class="grid-2">
           <div class="trade-stock">
             <select name="stock-name" id="stock-name-dd">
@@ -51,8 +53,10 @@
             <% end %>
           <% end %>
         </figure>
-        <figure class="grid-5">5</figure>
-        <figure class="grid-6">6</figure>
+        <figure class="grid-5">
+          <%= area_chart User.where(id: current_user.id).group(:updated_at).sum(:balance), height: "100%" %>
+        </figure>
+        <%# <figure class="grid-6">6</figure> %>
         <figure class="grid-7">
           <div class="balance">
             <h3>Wallet Balance</h3>
