@@ -50,7 +50,10 @@ class OrdersController < ApplicationController
         order_price = @order.price
         order_quantity = @order.quantity
         @trader_stock = @trader_stocks.find_by(symbol: @order.symbol)
-        @trader_stock.update_trader_stock_quantity_when_sell order_quantity 
+        @trader_stock.update_trader_stock_quantity_when_sell order_quantity
+        if @trader_stock.quantity == 0
+          @trader_stock.destroy
+        end
       end 
       current_user.recalculate_balance order_price
       @stock.update_stock_quantity order_quantity
