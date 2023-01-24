@@ -56,7 +56,9 @@ Rails.application.routes.draw do
         put 'admin_pages/approved_user', to: "admin_pages#approve_user"
         get 'add_user', to: 'admin_pages#add_user'
         post 'create_user', to: 'admin_pages#create_user'
-        delete 'users/:id', to: 'admin_pages#destroy'
+        get 'users/:id/edit' => 'admin_pages#edit_user', as: 'edit_user'
+        patch 'users/:id/edit' => 'admin_pages#update_user', as: 'update_user'
+        delete 'users/:id', to: 'admin_pages#destroy', as: 'delete_user'
       end
     end
   end
