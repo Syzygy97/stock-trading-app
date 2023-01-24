@@ -27,7 +27,7 @@
         <div class="fifth-column"><%= user.username %></div>
         <div class="sixth-column"><%= user.status %></div>
         <div class="seventh-column">
-          <%= link_to "View" %>
+          <%= link_to "View", admins_show_user_path(id: user.id), method: 'get' %>
           <%= link_to "Edit", admins_edit_user_path(id: user.id), method: 'get' %>
           <% if user.status == 'pending' %>
             <%= button_to "Approve", admins_admin_pages_approved_user_path(id: user.id), method: 'put' %>

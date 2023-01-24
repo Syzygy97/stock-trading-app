@@ -255,6 +255,11 @@ $sec-font: 'Montserrat', sans-serif;
       font-family: $sec-font;
       font-size: 90%;
 
+      .title {
+        color: #071742;
+        font-weight: 600;
+      }
+
       form {
         margin-top: 20px;
         width: 100%;

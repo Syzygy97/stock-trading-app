@@ -59,6 +59,7 @@ Rails.application.routes.draw do
         get 'users/:id/edit' => 'admin_pages#edit_user', as: 'edit_user'
         patch 'users/:id/edit' => 'admin_pages#update_user', as: 'update_user'
         delete 'users/:id', to: 'admin_pages#destroy', as: 'delete_user'
+        get 'users/:id/view' => 'admin_pages#show_user', as: 'show_user'
       end
     end
   end
