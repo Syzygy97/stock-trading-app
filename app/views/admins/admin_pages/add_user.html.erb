@@ -11,8 +11,20 @@
       <%= form_with scope: :user, model: @user, url: '/admins/create_user', method: :post do |f| %>
 
         <div>
+          <%= f.text_field :first_name, autofocus: true, placeholder: "First Name" %>
+        </div>
+
+        <div>
+          <%= f.text_field :last_name, placeholder: "Last Name" %>
+        </div>
+
+        <div>
+          <%= f.text_field :username, placeholder: "Username" %>
+        </div>
+        
+        <div>
           <%#= f.label :email %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
+          <%= f.email_field :email, autocomplete: "email", placeholder: "Email" %>
         </div>
 
         <div>
