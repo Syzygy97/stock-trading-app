@@ -20,7 +20,7 @@ class Admins::AdminPagesController < ApplicationController
   end
   
   def create_user
-    @user = User.new(params.require(:user).permit(:email, :password, :password_confirmation))
+    @user = User.new(params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation))
     if @user.save && @user.update(status: 'approved')
       ApprovedAccountMailer.with(email: @user.email).approve_email.deliver_now
       flash[:notice] = 'Successfully created new trader account.'
@@ -29,6 +29,17 @@ class Admins::AdminPagesController < ApplicationController
       flash[:error] = @user.errors.full_messages.first
       redirect_to admins_authenticated_root_path
     end
+  end
+
+  def edit_user
+    @user = User.find(params[:id])
+  end
+
+  def update_user
+    @user = User.find(params[:id])
+    @user.update(params.require(:user).permit(:username, :first_name, :last_name, :email))
+    flash[:notice] = 'Sucessfully updated trader account.'
+    redirect_to admins_authenticated_root_path if @user.update(params.require(:user).permit(:username, :first_name, :last_name, :email))
   end
 
   def destroy
