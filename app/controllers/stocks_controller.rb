@@ -4,23 +4,25 @@ class StocksController < ApplicationController
 
   def index
     @stocks = Stock.all
-    # ten_most_active_quote = @client.stock_market_list(:mostactive)
-    # ten_most_active_symbol = ten_most_active_quote.map(&:symbol)
-    # ten_most_active_symbol.each do |symbol|
-    #   # debugger
-    #   @stock = @stocks.find_by(symbol: symbol)
-    #   if @stocks.map(&:symbol).any?(symbol)
-    #     @stock.update_existing_stock_price
-    #   else
-    #     @stock = @stocks.create(
-    #         :company_name => @client.company(symbol).company_name,
-    #         :symbol => symbol,
-    #         :logo => @client.logo(symbol).url,
-    #         :price => rand(1.0..1_000.0).round(2),
-    #         :quantity => rand(100..10_000)
-    #       )
-    #   end
-    # end
+    ten_most_active_stocks = @client.stock_market_list(:mostactive, listLimit: 100)
+    ten_most_active_symbols = ten_most_active_stocks.map(&:symbol)
+    ten_most_active_symbols.each do |symbol|
+      # debugger
+      @stock = @stocks.find_by(symbol: symbol)
+      if !(@stocks.count > 0) || !@stocks.map(&:symbol).any?(symbol)
+        @stock = @stocks.create(
+          :company_name => @client.company(symbol).company_name,
+          :symbol => symbol,
+          :logo => @client.logo(symbol).url,
+          :price => ten_most_active_stocks.select{|item| item.symbol == symbol}.last.latest_price,
+          :quantity => ten_most_active_stocks.select{|item| item.symbol == symbol}.last.iex_volume,
+          :change => ten_most_active_stocks.select{|item| item.symbol == symbol}.last.change,
+          :percent_change => ten_most_active_stocks.select{|item| item.symbol == symbol}.last.change_percent_s
+        )
+      else
+        @stock.update_existing_stock_price
+      end
+    end
   end
 
   def show

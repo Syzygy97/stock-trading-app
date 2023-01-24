@@ -35,14 +35,19 @@
         <figure class="grid-3">3</figure>
         <figure class="grid-4">
           <h1>MY STOCKS</h1>
-          <% @trader_stocks.each do |trader_stock| %>
-            <% if trader_stock.user == current_user %>
-              <ul>
-                <li><%= trader_stock.symbol %></li>
-                <li><%= trader_stock.price %></li>
-                <li><%= trader_stock.quantity %></li>
-              </ul>
-              <%= link_to "Transact", new_order_path(user_id: current_user.id, symbol: trader_stock.symbol) %>
+          <% if @trader_stocks.count == 0 %>
+            <h2>Wow, such empty</h2>
+            <h4><%= link_to "BUY A STOCK NOW!", stocks_path %></h4>
+          <% else %>
+            <% @trader_stocks.each do |trader_stock| %>
+              <% if trader_stock.user == current_user %>
+                <ul>
+                  <li><%= trader_stock.symbol %></li>
+                  <li><%= trader_stock.price %></li>
+                  <li><%= trader_stock.quantity %></li>
+                </ul>
+                <%= link_to "Transact", new_order_path(user_id: current_user.id, symbol: trader_stock.symbol) %>
+              <% end %>
             <% end %>
           <% end %>
         </figure>

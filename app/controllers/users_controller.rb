@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     if params[:commit] == "Deposit"
       result = current_user.balance.to_f + params[:user][:balance].to_f
     else
+      return if params[:user][:balance].to_f > current_user.balance.to_f
       result = current_user.balance.to_f - params[:user][:balance].to_f
     end
 

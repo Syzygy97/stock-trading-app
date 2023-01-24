@@ -3,64 +3,45 @@
   <div class="stocks-content">
     <%= render "users/header"%>
     <main class="stocks-dashboard">
-      <div class="stock-name">
-        <h2>Company (most-active)</h2>
-        <% @stocks.each do |stock| %>
-          <ul>
-            <li><%= link_to stock.company_name, stock %></li>
-          </ul>
-        <% end %>
-      </div>
-      <div class="stock-symbol">
-        <h2>Symbol</h2>
-        <% @client.stock_market_list(:mostactive).map(&:symbol).each do |item| %>
-          <ul>
-            <li><%= item %></li>
-          </ul>
-        <% end %>
-      </div>
-      <div class="stock-price">
-        <h2>Price</h2>
-        <% @client.stock_market_list(:mostactive).map(&:latest_price).each do |item| %>
-          <ul>
-            <li>$ <%= item %></li>
-          </ul>
-        <% end %>
-      </div>
-      <div class="stock-delta">
-        <h2>Change</h2>
-        <% @client.stock_market_list(:mostactive).map(&:change).each do |item| %>
-          <ul>
-            <% if item.to_f > 0 %>
-              <li style="color: green"><%= item %></li>
-            <% elsif item.to_f < 0 %>
-              <li style="color: red"><%= item %></li>
-            <% end %>
-          </ul>
-        <% end %>
-      </div>
-      <div class="stock-percent-delta">
-        <h2>%Change</h2>
-        <% @client.stock_market_list(:mostactive).map(&:change_percent_s).each do |item| %>
-          <ul>
-            <% if item.to_f > 0 %>
-              <li style="color: green">(<%= item %>)</li>
-            <% elsif item.to_f < 0 %>
-              <li style="color: red">(<%= item %>)</li>
-            <% end %>
-          </ul>
-        <% end %>
-      </div>
-      <div class="stock-options">
-        <h2 class="forex-rate">Forex($1 USD -> PHP): 55.84 PHP </h2>
-        <div>
-          <button>BUY</button>
-          <button>SELL</button>
+      <div class="stocks-dashboard-header">
+        <div class="stock-name-title">
+          <h2>Company (most-active)</h2>
+        </div>
+        <div class="stock-symbol-title">
+          <h2>Symbol</h2>
+        </div>
+        <div class="stock-price-title">
+          <h2>Price</h2>
+        </div>
+        <div class="stock-change-title">
+          <h2>Change</h2>
+        </div>
+        <div class="stock-percent-change-title">
+          <h2>%Change</h2>
         </div>
         <div>
-          <button>BUY</button>
-          <button>SELL</button>
+          <h2 class="forex-rate">Forex($1 USD -> PHP): 55.84 PHP</h2>
         </div>
+      </div>
+      <div class="stocks-dashboard-content">
+        <% @stocks.sort_by{|key| key.company_name}.each do |stock| %>
+          <ul>
+            <li><%= stock.company_name %></li>
+            <li><%= stock.symbol %></li>
+            <li><%= number_to_currency(stock.price, :unit => "$") %></li>
+            <% if stock.change > 0 %>
+              <li style="color: green"><%= stock.change %></li>
+            <% elsif stock.change < 0 %>
+              <li style="color: red"><%= stock.change %></li>
+            <% end %>
+            <% if stock.percent_change.to_f > 0 %>
+              <li style="color: green">(<%= stock.percent_change.to_f %>%)</li>
+            <% elsif stock.percent_change.to_f < 0 %>
+              <li style="color: red">(<%= stock.percent_change.to_f %>%)</li>
+            <% end %>
+              <li><button><%= link_to "TRANSACT", stock %></button></li>
+          </ul>
+        <% end %>
       </div>
     </main>
   </div>

@@ -9,6 +9,6 @@ class Stock < ApplicationRecord
   end
 
   def update_existing_stock_price
-    
+    update(price: price)
   end
 end
