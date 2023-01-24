@@ -99,7 +99,7 @@ $sec-font: 'Montserrat', sans-serif;
   place-items: center;
 
   .list {
-    width: 60%;
+    width: 70%;
     margin-top: 3%;
 
     .list-header {
@@ -192,15 +192,19 @@ $sec-font: 'Montserrat', sans-serif;
       }
 
       .fourth-column {
-        width: 25%;
+        width: 15%;
       }
 
       .fifth-column {
         width: 15%;
-        text-transform: capitalize;
       }
 
       .sixth-column {
+        width: 10%;
+        text-transform: capitalize;
+      }
+
+      .seventh-column {
         width: 20%;
         display: flex;
         justify-content: space-between;
@@ -226,7 +230,6 @@ $sec-font: 'Montserrat', sans-serif;
   .a-modal {
     background-color: white;
     width: 25%;
-    height: 38%;
 
     .close {
       height: 50px;
