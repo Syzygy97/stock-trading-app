@@ -26,4 +26,9 @@ test:
 
 production:
   <<: *default
-  database: stock-trading-app_production
+  database: stock_trading_app
+  host: <%= ENV.fetch('PGHOST') {"dpg-cf77mlkgqg47vk1v208g-a"} %>
+  username: <%= ENV.fetch('PGUSER') {"stock_trading_app_user"} %>
+  password: <%= ENV.fetch('PGPASSWORD') {"Eqv4baBx7FNGjStSkvptpfLbNXTDHMJH"} %>
+  port: 5432
+
