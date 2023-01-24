@@ -14,25 +14,27 @@
         <div class="second-column">First Name</div>
         <div class="third-column">Last Name</div>
         <div class="fourth-column">Email</div>
-        <div class="fifth-column">Status</div>
-        <div class="sixth-column">Action</div>
+        <div class="fifth-column">Username</div>
+        <div class="sixth-column">Status</div>
+        <div class="seventh-column">Action</div>
       </div>
       <% @users.each do |user| %>
       <div class="trader">
         <div class="first-column"><%= user.id %></div>
-        <div class="second-column"></div>
-        <div class="third-column"></div>
+        <div class="second-column"><%= user.first_name %></div>
+        <div class="third-column"><%= user.last_name %></div>
         <div class="fourth-column"><%= user.email %></div>
-        <div class="fifth-column"><%= user.status %></div>
-        <div class="sixth-column">
+        <div class="fifth-column"><%= user.username %></div>
+        <div class="sixth-column"><%= user.status %></div>
+        <div class="seventh-column">
           <%= link_to "View" %>
-          <%= link_to "Edit" %>
+          <%= link_to "Edit", admins_edit_user_path(id: user.id), method: 'get' %>
           <% if user.status == 'pending' %>
             <%= button_to "Approve", admins_admin_pages_approved_user_path(id: user.id), method: 'put' %>
           <% else %>
             <%= button_to "Approve", admins_admin_pages_approved_user_path(id: user.id), method: 'put', :disabled => true, class: 'disabled' %>
           <% end %>
-          <div class="red"><%= link_to 'Delete', admins_path(id: user.id), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure you want to remove this user from the system?"} %></div>
+          <div class="red"><%= link_to 'Delete', admins_delete_user_path(id: user.id), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure you want to remove this user from the system?"} %></div>
         </div>
       </div>
       <% end %>
