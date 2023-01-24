@@ -21,10 +21,10 @@
             <div class="lp-details-3"> </div>
             <div class="lp-details-btn">
             <button>
-              <%= link_to "Portfolio", users_portfolios_path %>
+              <%= link_to "Portfolio", dashboard_path %>
             </button>
           <% else %>
-            <div class="lp-details-1">Successfully registered. Welcome to ASTR, <%= current_user.email %>!</div>
+            <div class="lp-details-1">Successfully registered. Welcome to ASTR, <%= current_user.first_name %>!</div>
             <%# <div class="lp-details-2">//Selling Tagline//</div> %>
             <div class="lp-details-3">Kindly wait for your account approval.</div>
             <div class="lp-details-btn">
