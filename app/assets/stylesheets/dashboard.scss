@@ -92,6 +92,8 @@ aside {
     font-family: $sec-font;
     padding: 0.5em 0;
     padding-left: 0.5em;
+    color: $greenBg;
+    transition: padding-left 250ms linear;
 
     a {
       width: 100%;
@@ -105,7 +107,6 @@ aside {
     font-weight: 800;
     padding-left: 2em;
     transition: padding-left 250ms linear;
-    // transition: font-weight 250ms linear;
   }
 }
 
@@ -375,10 +376,12 @@ figure.grid-7 {
     color: white;
     font-family: $sec-font;
     font-weight: 800;
+    transition: color 250ms ease-out;
   }
 
   input:hover {
     color: $blueBg;
+    transition: color 250ms ease-in;
   }
 
   .deposit-btn {
@@ -431,12 +434,20 @@ figure.grid-7 {
       height: 10%;
       width: 100%;
       padding: 0.1em 0;
+      transition: font-weight 250ms ease-out;
+      transition: background-color 250ms ease-out;
     }
-    a:nth-child(odd) {
+    a:nth-child(even) {
       background-color: $lightBlueGray;
+    }
+    a:last-child {
+      border-bottom-left-radius: 25px;
+      border-bottom-right-radius: 25px;
     }
     a:hover {
       background-color: #1a7747;
+      transition: font-weight 250ms ease-in;
+      transition: background-color 250ms ease-in;
       font-weight: 800;
     }
     li {
@@ -522,10 +533,13 @@ figure.grid-2 {
         color: white;
         text-decoration: none;
         font-weight: 600;
+        transition: color 250ms ease-out;
       }
 
       a:hover {
         color: $blueBg;
+        font-weight: 600;
+        transition: color 250ms ease-in;
       }
     }
   }
