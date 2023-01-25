@@ -1,7 +1,13 @@
+$blueBg: #071742;
+$greenBg: #43ef97;
+$main-font: "Fredoka One", cursive;
+$sec-font: "Montserrat", sans-serif;
+
 #history-container {
   display: flex;
   height: 100vh;
   width: 100vw;
+  background-color: $blueBg;
 }
 .history-content {
   width: 100%;

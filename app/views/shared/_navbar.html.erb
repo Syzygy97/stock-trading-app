@@ -1,6 +1,15 @@
 <div class="navbar">
   <div class="nav-link">
-    <%= link_to image_tag("logo.png"), root_path %>
+    <div class="nav-logo">
+      <%= link_to image_tag("logo.png"), root_path %>
+      <% if Time.now.strftime("%H").to_i < 12 && Time.now.strftime("%H").to_i > 4 %>
+        <h3>Good Morning, <%= current_user.first_name %>!</h3>
+      <% elsif Time.now.strftime("%H").to_i < 18 %>
+        <h3>Good Afternoon, <%= current_user.first_name %>!</h3>
+      <% else %>
+      <h3>Good Evening, <%= current_user.first_name %>!</h3>
+      <% end %>
+    </div>
     <div class="nav-link right">
       <% if user_signed_in? || admin_signed_in? %>
         <%= link_to "Sign out", destroy_user_session_path, class: "sign-out", data: { "turbo-method": :delete } %>

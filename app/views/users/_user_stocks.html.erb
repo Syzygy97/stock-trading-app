@@ -1,0 +1,17 @@
+<h1>MY STOCKS</h1>
+<% if @trader_stocks.count == 0 %>
+  <h2>Wow, such empty</h2>
+  <h4><%= link_to "BUY A STOCK NOW!", stocks_path %></h4>
+<% else %>
+  <% @trader_stocks.each do |trader_stock| %>
+    <% @stock = @stocks.find_by(symbol: trader_stock.symbol) %>
+    <% if trader_stock.user == current_user %>
+      <ul>
+        <li><%= trader_stock.symbol %></li>
+        <li><%= number_to_currency(trader_stock.price, :unit => "$") %></li>
+        <li><%= trader_stock.quantity %> (<%= ((trader_stock.price / @stock.quantity) * 100).round(2) %>% share)</li>
+        <li><button><%= link_to "Transact", new_order_path(user_id: current_user.id, symbol: trader_stock.symbol) %></button></li>
+      </ul>
+    <% end %>
+  <% end %>
+<% end %>

@@ -1,7 +1,7 @@
 <div id="stocks-container">
   <%= render "users/sidebar"%>
   <div class="stocks-content">
-    <%= render "users/header"%>
+    <%= render "/shared/navbar" %>
     <main class="stocks-dashboard">
       <div class="stocks-dashboard-header">
         <div class="stock-name-title">
@@ -33,11 +33,15 @@
               <li style="color: green"><%= stock.change %></li>
             <% elsif stock.change < 0 %>
               <li style="color: red"><%= stock.change %></li>
+            <% else %>
+              <li style="color: white"><%= stock.change %></li>
             <% end %>
             <% if stock.percent_change.to_f > 0 %>
               <li style="color: green">(<%= stock.percent_change.to_f %>%)</li>
             <% elsif stock.percent_change.to_f < 0 %>
               <li style="color: red">(<%= stock.percent_change.to_f %>%)</li>
+            <% else %>
+              <li style="color: white">(<%= stock.percent_change.to_f %>%)</li>
             <% end %>
               <li><button><%= link_to "TRANSACT", stock %></button></li>
           </ul>

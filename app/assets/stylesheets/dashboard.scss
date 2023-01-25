@@ -2,6 +2,11 @@ $sidebar-width: 15vw;
 $portfolio-content-width: calc(100vw - #{$sidebar-width});
 $header-height: 8vh;
 $main-height: calc(100vh - #{$header-height});
+$blueBg: #071742;
+$greenBg: #43ef97;
+$lightBlueGray: rgb(32, 48, 81);
+$main-font: "Fredoka One", cursive;
+$sec-font: "Montserrat", sans-serif;
 
 #portfolio-container,
 #stocks-container,
@@ -12,12 +17,14 @@ $main-height: calc(100vh - #{$header-height});
 header,
 aside {
   display: flex;
+  color: white;
 }
 #portfolio-container,
 #stocks-container {
   height: 100vh;
   border: 2px solid black;
   width: 100vw;
+  background-color: $blueBg;
 }
 .portfolio-content,
 .stocks-content {
@@ -38,14 +45,21 @@ aside {
   color: rgb(255, 102, 0);
   flex-direction: column;
   justify-content: space-between;
+  padding-left: 0;
+  padding-right: 0;
 
   .sidebar-logo {
     height: 20%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1em;
+
+    img {
+      width: 100%;
+    }
 
     button {
       padding: 0.5em 1em;
@@ -63,13 +77,35 @@ aside {
     justify-content: center;
     gap: 1em;
   }
+
   ul > h3 {
+    font-family: $main-font;
+    color: white;
+    font-size: 1.5rem;
     margin-bottom: 0.5em;
     opacity: 0.7;
+    padding-left: 0.35em;
   }
   li {
     list-style: none;
     margin-bottom: 2em;
+    font-family: $sec-font;
+    padding: 0.5em 0;
+    padding-left: 0.5em;
+
+    a {
+      width: 100%;
+      text-decoration: none;
+      color: $greenBg;
+    }
+  }
+
+  li:hover {
+    background-color: $lightBlueGray;
+    font-weight: 800;
+    padding-left: 2em;
+    transition: padding-left 250ms linear;
+    // transition: font-weight 250ms linear;
   }
 }
 
@@ -122,7 +158,6 @@ header {
     "grid1 grid2 grid2"
     "grid4 grid5 grid5"
     "grid4 grid7 grid7";
-
   figure {
     border: 1px solid black;
     border-radius: 25px;
@@ -263,12 +298,20 @@ header {
   display: flex;
 
   .balance {
-    width: 40%;
+    width: 50%;
     height: 100%;
     border-right: 1px solid black;
+
+    h1,
+    h4 {
+      font-family: $sec-font;
+    }
+    h4 {
+      opacity: 0.5;
+    }
   }
   .change-balance {
-    width: 60%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -287,6 +330,10 @@ header {
   }
 }
 
+figure.grid-7 {
+  padding-right: 0;
+}
+
 .portfolio-form {
   width: 100%;
 
@@ -295,7 +342,17 @@ header {
     margin-left: 0.7em;
     font-size: 1.5em;
     border: none;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid white;
+    background-color: $lightBlueGray;
+    color: white;
+    padding: 0.25em 0.5em;
+    font-size: 1.25rem;
+    margin: 0;
+  }
+
+  input::placeholder {
+    font-size: small;
+    font-family: $sec-font;
   }
 }
 
@@ -304,6 +361,38 @@ header {
   justify-content: center;
   align-items: center;
   gap: 1em;
+  width: 100%;
+
+  button {
+    padding: 0.2em 0.5em;
+    border-radius: 4px;
+    border-color: white;
+  }
+
+  input {
+    cursor: pointer;
+    border: none;
+    color: white;
+    font-family: $sec-font;
+    font-weight: 800;
+  }
+
+  input:hover {
+    color: $blueBg;
+  }
+
+  .deposit-btn {
+    background-color: #1a7747;
+    input {
+      background-color: #1a7747;
+    }
+  }
+  .withdraw-btn {
+    background-color: red;
+    input {
+      background-color: red;
+    }
+  }
 }
 
 .grid-2 {
@@ -315,67 +404,55 @@ header {
   .trade-stock-header {
     height: 10%;
     width: 100%;
-    border-bottom: 1px solid black;
     h3 {
       text-align: center;
+      font-family: $main-font;
+      background-color: $lightBlueGray;
+      border-top-left-radius: 25px;
+      border-top-right-radius: 25px;
+      padding-top: 0.2em;
+      // border-bottom: 5px solid white;
     }
   }
   .trade-stock-content {
     height: 90%;
     width: 100%;
-    overflow-y: auto;
-    // display: flex;
-    // flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    font-family: $sec-font;
     a {
       text-decoration: none;
       color: white;
     }
-    ul:hover {
-      background-color: rgba(128, 128, 128, 0.5);
+    a:first-child {
+      border-top: 2px solid white;
     }
-    ul {
+    a {
       height: 10%;
       width: 100%;
+      padding: 0.1em 0;
+    }
+    a:nth-child(odd) {
+      background-color: $lightBlueGray;
+    }
+    a:hover {
+      background-color: #1a7747;
+      font-weight: 800;
     }
     li {
       width: calc((100% / 3) - 0.7em);
       display: inline-flex;
       justify-content: center;
-      // align-items: center;
+      font-size: small;
+
+      span {
+        width: 50%;
+        text-align: center;
+        border-radius: 4px;
+        padding: 0.15em 0;
+      }
     }
   }
-
-  // .trade-stock {
-  //   height: 70%;
-  //   width: 100%;
-  //   display: flex;
-  //   flex-direction: column;
-  //   align-items: center;
-  //   border-bottom: 1px solid black;
-
-  //   select {
-  //     height: 20%;
-  //     width: 100%;
-  //   }
-
-  //   div {
-  //     height: 60%;
-  //     width: 100%;
-  //     display: flex;
-  //     justify-content: center;
-  //     align-items: center;
-
-  //     h2 {
-  //       width: 40%;
-  //       border: 1px solid black;
-  //       text-align: center;
-  //     }
-  //     h3 {
-  //       flex-grow: 1;
-  //       text-align: center;
-  //     }
-  //   }
-  // }
 
   .trade-stock-type {
     height: 30%;
@@ -399,8 +476,65 @@ header {
     }
   }
 }
+
+figure.grid-2 {
+  padding: 0;
+}
 .grid-4 {
   overflow-y: auto;
+
+  h1 {
+    text-align: center;
+    border-bottom: 5px solid white;
+    background-color: rgb(32, 48, 81);
+    padding: 0.25em 0;
+    font-family: $main-font;
+  }
+
+  ul {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    // border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    padding: 0.5em 0;
+    background-color: $blueBg;
+  }
+
+  ul:nth-child(odd) {
+    background-color: rgb(32, 48, 81);
+  }
+
+  li {
+    width: calc((100% / 4) - 0.7em);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-family: $sec-font;
+
+    button {
+      border: 1px solid black;
+      padding: 0.2em 0.5em;
+      border-radius: 4px;
+      background-color: #28995f;
+      font-family: $main-font;
+
+      a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      a:hover {
+        color: $blueBg;
+      }
+    }
+  }
+}
+
+figure.grid-4 {
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
 }
 
 // Order Index Styles
@@ -408,4 +542,17 @@ header {
 .buy-transaction,
 .sell-transaction {
   overflow-y: auto;
+  h1 {
+    text-align: center;
+  }
+  ul {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  li {
+    width: calc((100% / 3) - 0.7em);
+    display: inline-flex;
+    justify-content: center;
+  }
 }

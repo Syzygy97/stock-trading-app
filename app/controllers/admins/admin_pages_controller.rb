@@ -3,6 +3,11 @@ class Admins::AdminPagesController < ApplicationController
     @users = User.all
   end
 
+  def user_transactions
+    @users = User.all
+    @orders = Order.all
+  end
+
   def approve_user
     @user = User.find_by(id: params[:id])
     @user.update(status: 1)
