@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { registrations: 'users/registrations' }
+  devise_for :users, :controllers => { registrations: 'users/registrations', sessions: 'users/sessions' }
   
   get 'homes/index'
   
@@ -21,6 +21,14 @@ Rails.application.routes.draw do
     sessions: 'admins/sessions',
     registrations: 'admins/registrations'
   }
+
+  devise_scope :user do
+    authenticated :user do
+      namespace :users do
+        get 'dashboard', to: "users#index", as: :authenticated_root
+      end
+    end
+  end
 
   devise_scope :admin do
     authenticated :admin do
