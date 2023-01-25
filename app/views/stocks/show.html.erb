@@ -1,11 +1,32 @@
-<h1><%= @stock.company_name %> (<%= @stock.symbol %>)</h1>
-<h3>Price: $<%= @stock.price %></h3>
-<h3>Quantity: <%= @stock.quantity %></h3>
-<h2>DESCRIPTION</h2>
-<h3><%= @client.company(@stock.symbol).description %></h3>
-<h2>NEWS</h2>
-<h3><%= @client.news(@stock.symbol).first.headline %></h3>
-<img src="<%= @stock.logo %>">
 
-<h1>BUY NOW</h1>
-<button><%= link_to "BUY", new_order_path(user_id: current_user.id, symbol: @stock.symbol) %></button>
+<div class="stock-show-page">
+  <div class="stock-container">
+    <img src="<%= @stock.logo %>" alt="<%= @stock.company_name %> logo" class="stock-logo">
+    <div class="stock-info">
+      <div class="stock-name-symbol">
+        <h1 class="stock-name"><%= @stock.company_name %> (<%= @stock.symbol %>)</h1>
+        <%= link_to "TRANSACT", new_order_path(user_id: current_user.id, symbol: @stock.symbol) %>
+      </div>
+      <p class="stock-price">Price: $<%= @stock.price %></p>
+      <% if current_user.trader_stocks.find_by(symbol: @stock.symbol).nil? %>
+        <p class="stock-quantity">Quantity: <%= @stock.quantity %> (Available: 0)</p>
+      <% else %>
+        <p class="stock-quantity">Quantity: <%= @stock.quantity %> (Available: <%= current_user.trader_stocks.find_by(symbol: @stock.symbol).quantity %>)</p>
+      <% end %>
+      <div class="stock-description">
+        <h3><%= @client.company(@stock.symbol).description %></h3>
+      </div>
+    </div>
+  </div>
+  <div class="stock-news">
+    <h1>LATEST NEWS</h1>
+    <ul>
+      <% @client.news(@stock.symbol).each do |article| %>
+        <li>
+          <a href="<%= article.url %>"><%= article.headline %></a>
+          <p><%= article.summary %></p>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

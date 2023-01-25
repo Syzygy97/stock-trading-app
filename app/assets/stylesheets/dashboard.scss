@@ -2,6 +2,11 @@ $sidebar-width: 15vw;
 $portfolio-content-width: calc(100vw - #{$sidebar-width});
 $header-height: 8vh;
 $main-height: calc(100vh - #{$header-height});
+$blueBg: #071742;
+$greenBg: #43ef97;
+$lightBlueGray: rgb(32, 48, 81);
+$main-font: "Fredoka One", cursive;
+$sec-font: "Montserrat", sans-serif;
 
 #portfolio-container,
 #stocks-container,
@@ -12,12 +17,14 @@ $main-height: calc(100vh - #{$header-height});
 header,
 aside {
   display: flex;
+  color: white;
 }
 #portfolio-container,
 #stocks-container {
   height: 100vh;
   border: 2px solid black;
   width: 100vw;
+  background-color: $blueBg;
 }
 .portfolio-content,
 .stocks-content {
@@ -38,14 +45,21 @@ aside {
   color: rgb(255, 102, 0);
   flex-direction: column;
   justify-content: space-between;
+  padding-left: 0;
+  padding-right: 0;
 
   .sidebar-logo {
     height: 20%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1em;
+
+    img {
+      width: 100%;
+    }
 
     button {
       padding: 0.5em 1em;
@@ -63,13 +77,36 @@ aside {
     justify-content: center;
     gap: 1em;
   }
+
   ul > h3 {
+    font-family: $main-font;
+    color: white;
+    font-size: 1.5rem;
     margin-bottom: 0.5em;
     opacity: 0.7;
+    padding-left: 0.35em;
   }
   li {
     list-style: none;
     margin-bottom: 2em;
+    font-family: $sec-font;
+    padding: 0.5em 0;
+    padding-left: 0.5em;
+    color: $greenBg;
+    transition: padding-left 250ms linear;
+
+    a {
+      width: 100%;
+      text-decoration: none;
+      color: $greenBg;
+    }
+  }
+
+  li:hover {
+    background-color: $lightBlueGray;
+    font-weight: 800;
+    padding-left: 2em;
+    transition: padding-left 250ms linear;
   }
 }
 
@@ -122,7 +159,6 @@ header {
     "grid1 grid2 grid2"
     "grid4 grid5 grid5"
     "grid4 grid7 grid7";
-
   figure {
     border: 1px solid black;
     border-radius: 25px;
@@ -163,10 +199,16 @@ header {
   justify-content: center;
   align-items: stretch;
   .stocks-dashboard-header {
+    background-color: $lightBlueGray;
+    padding: 0.25em 0;
+    vertical-align: middle;
+    height: 5vh;
+    border-bottom: 5px solid white;
     div {
       width: 12%;
       h2 {
         text-align: center;
+        font-family: $main-font;
       }
       .forex-rate {
         font-size: 1em;
@@ -185,9 +227,10 @@ header {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    font-family: $sec-font;
     div {
       width: 12%;
-      border-right: 1px solid black;
+      border-right: 1px solid white;
       h2 {
         text-align: center;
         font-weight: 300;
@@ -210,19 +253,38 @@ header {
         display: inline-flex;
         justify-content: center;
         list-style: none;
-        border-right: 1px solid black;
+        border-right: 1px solid white;
         padding: 0.25em 0;
+
+        a {
+          background-color: #1a7747;
+          text-decoration: none;
+          color: white;
+          padding: 0.25em 0.5em;
+          border-radius: 4px;
+          font-weight: 600;
+          transition: color 250ms ease-out;
+        }
+
+        a:hover {
+          font-weight: 800;
+          color: $blueBg;
+          transition: color 250ms ease-in;
+        }
       }
 
       li:first-child {
         width: 30%;
         justify-content: left;
-        padding-left: 7%;
+        padding-left: 5%;
       }
       li:last-child {
         width: calc(22% - 2em);
         border: none;
       }
+    }
+    ul:nth-child(even) {
+      background-color: $lightBlueGray;
     }
   }
   // ul > li {
@@ -263,12 +325,20 @@ header {
   display: flex;
 
   .balance {
-    width: 40%;
+    width: 50%;
     height: 100%;
     border-right: 1px solid black;
+
+    h1,
+    h4 {
+      font-family: $sec-font;
+    }
+    h4 {
+      opacity: 0.5;
+    }
   }
   .change-balance {
-    width: 60%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -287,6 +357,10 @@ header {
   }
 }
 
+figure.grid-7 {
+  padding-right: 0;
+}
+
 .portfolio-form {
   width: 100%;
 
@@ -295,7 +369,17 @@ header {
     margin-left: 0.7em;
     font-size: 1.5em;
     border: none;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid white;
+    background-color: $lightBlueGray;
+    color: white;
+    padding: 0.25em 0.5em;
+    font-size: 1.25rem;
+    margin: 0;
+  }
+
+  input::placeholder {
+    font-size: small;
+    font-family: $sec-font;
   }
 }
 
@@ -304,6 +388,40 @@ header {
   justify-content: center;
   align-items: center;
   gap: 1em;
+  width: 100%;
+
+  button {
+    padding: 0.2em 0.5em;
+    border-radius: 4px;
+    border-color: white;
+  }
+
+  input {
+    cursor: pointer;
+    border: none;
+    color: white;
+    font-family: $sec-font;
+    font-weight: 800;
+    transition: color 250ms ease-out;
+  }
+
+  input:hover {
+    color: $blueBg;
+    transition: color 250ms ease-in;
+  }
+
+  .deposit-btn {
+    background-color: #1a7747;
+    input {
+      background-color: #1a7747;
+    }
+  }
+  .withdraw-btn {
+    background-color: red;
+    input {
+      background-color: red;
+    }
+  }
 }
 
 .grid-2 {
@@ -315,67 +433,63 @@ header {
   .trade-stock-header {
     height: 10%;
     width: 100%;
-    border-bottom: 1px solid black;
     h3 {
       text-align: center;
+      font-family: $main-font;
+      background-color: $lightBlueGray;
+      border-top-left-radius: 25px;
+      border-top-right-radius: 25px;
+      padding-top: 0.2em;
+      // border-bottom: 5px solid white;
     }
   }
   .trade-stock-content {
     height: 90%;
     width: 100%;
-    overflow-y: auto;
-    // display: flex;
-    // flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    font-family: $sec-font;
     a {
       text-decoration: none;
       color: white;
     }
-    ul:hover {
-      background-color: rgba(128, 128, 128, 0.5);
+    a:first-child {
+      border-top: 2px solid white;
     }
-    ul {
+    a {
       height: 10%;
       width: 100%;
+      padding: 0.1em 0;
+      transition: font-weight 250ms ease-out;
+      transition: background-color 250ms ease-out;
+    }
+    a:nth-child(even) {
+      background-color: $lightBlueGray;
+    }
+    a:last-child {
+      border-bottom-left-radius: 25px;
+      border-bottom-right-radius: 25px;
+    }
+    a:hover {
+      background-color: #1a7747;
+      transition: font-weight 250ms ease-in;
+      transition: background-color 250ms ease-in;
+      font-weight: 800;
     }
     li {
       width: calc((100% / 3) - 0.7em);
       display: inline-flex;
       justify-content: center;
-      // align-items: center;
+      font-size: small;
+
+      span {
+        width: 50%;
+        text-align: center;
+        border-radius: 4px;
+        padding: 0.15em 0;
+      }
     }
   }
-
-  // .trade-stock {
-  //   height: 70%;
-  //   width: 100%;
-  //   display: flex;
-  //   flex-direction: column;
-  //   align-items: center;
-  //   border-bottom: 1px solid black;
-
-  //   select {
-  //     height: 20%;
-  //     width: 100%;
-  //   }
-
-  //   div {
-  //     height: 60%;
-  //     width: 100%;
-  //     display: flex;
-  //     justify-content: center;
-  //     align-items: center;
-
-  //     h2 {
-  //       width: 40%;
-  //       border: 1px solid black;
-  //       text-align: center;
-  //     }
-  //     h3 {
-  //       flex-grow: 1;
-  //       text-align: center;
-  //     }
-  //   }
-  // }
 
   .trade-stock-type {
     height: 30%;
@@ -399,8 +513,68 @@ header {
     }
   }
 }
+
+figure.grid-2 {
+  padding: 0;
+}
 .grid-4 {
   overflow-y: auto;
+
+  h1 {
+    text-align: center;
+    border-bottom: 5px solid white;
+    background-color: rgb(32, 48, 81);
+    padding: 0.25em 0;
+    font-family: $main-font;
+  }
+
+  ul {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    // border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    padding: 0.5em 0;
+    background-color: $blueBg;
+  }
+
+  ul:nth-child(odd) {
+    background-color: rgb(32, 48, 81);
+  }
+
+  li {
+    width: calc((100% / 4) - 0.7em);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-family: $sec-font;
+
+    button {
+      border: 1px solid black;
+      padding: 0.2em 0.5em;
+      border-radius: 4px;
+      background-color: #28995f;
+      font-family: $main-font;
+
+      a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 250ms ease-out;
+      }
+
+      a:hover {
+        color: $blueBg;
+        font-weight: 600;
+        transition: color 250ms ease-in;
+      }
+    }
+  }
+}
+
+figure.grid-4 {
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
 }
 
 // Order Index Styles
@@ -408,4 +582,150 @@ header {
 .buy-transaction,
 .sell-transaction {
   overflow-y: auto;
+  h1 {
+    text-align: center;
+  }
+  ul {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  li {
+    width: calc((100% / 3) - 0.7em);
+    display: inline-flex;
+    justify-content: center;
+  }
+}
+
+// STOCKS SHOW PAGE
+
+.stock-show-page {
+  width: 100vw;
+  height: 100vh;
+  background-color: $blueBg;
+  color: white;
+  overflow: hidden;
+  padding: 0.5em;
+  font-family: $sec-font;
+}
+
+.stock-container {
+  height: 30vh;
+  display: flex;
+  align-items: center;
+  background-color: $blueBg;
+}
+
+.stock-logo {
+  width: 200px;
+  height: 200px;
+  margin-right: 20px;
+}
+
+.stock-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  a {
+    text-decoration: none;
+    color: white;
+    background-color: #1a7747;
+    padding: 0.25em 0.5em;
+    width: 10%;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: color 250ms ease-out;
+    margin-bottom: 0.5em;
+    font-size: 1.25em;
+  }
+
+  a:hover {
+    color: $blueBg;
+    transition: color 250ms ease-in;
+  }
+}
+.stock-name-symbol {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.stock-name {
+  font-size: 2em;
+  margin-bottom: 0;
+}
+
+.stock-symbol {
+  font-size: 1.5em;
+  margin-top: -0.5em;
+  color: gray;
+}
+
+.stock-price {
+  font-size: 1.5em;
+  margin-top: 0.25em;
+  color: green;
+}
+
+.stock-quantity {
+  font-size: 1.2em;
+  margin: 0.5em 0;
+  color: gray;
+}
+
+.stock-news {
+  margin-top: 2vh;
+  border: 2px solid white;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.stock-news h1 {
+  background-color: $lightBlueGray;
+  text-align: center;
+  font-family: $main-font;
+  letter-spacing: 0.1em;
+  height: 5vh;
+}
+
+.stock-news ul {
+  height: 60vh;
+  border-top: 1px solid white;
+  overflow-y: auto;
+  padding: 0.5em 0.75em;
+}
+
+.stock-news li {
+  margin-bottom: 10px;
+  list-style: none;
+}
+
+.stock-news a {
+  width: 100%;
+  font-size: 1.2em;
+  color: $greenBg;
+  text-decoration: none;
+  background-color: none;
+  font-family: $main-font;
+}
+
+.stock-news p {
+  font-size: 1em;
+  color: white;
+  margin-top: 5px;
+  margin-left: 10px;
+  background-color: $blueBg;
+}
+
+.stock-description {
+  height: 50%;
+  overflow-y: auto;
+}
+
+.new_user {
+  background-color: #071742;
+  width: 100vw;
+  height: 100vh;
 }

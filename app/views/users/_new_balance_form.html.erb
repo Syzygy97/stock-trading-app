@@ -1,16 +1,16 @@
 <%= form_with(url: update_user_url(current_user), scope: :user, data: { turbo: false }, method: :patch) do |form| %>
   
   <div class = "portfolio-form">
-    <%= form.number_field :balance, autocomplete: "off", value: nil, step: 0.01 %>
+    <%= form.number_field :balance, autocomplete: "off", value: nil, step: 0.01, placeholder: "Enter amount" %>
   </div>
 
   <div class="transaction-option">
-    <div class="deposit-btn">
+    <button class="deposit-btn">
       <%= form.submit "Deposit" %>
-    </div>
-    <div class="withdraw-btn">
+    </button>
+    <button class="withdraw-btn">
       <%= form.submit "Withdraw" %>
-    </div>
+    </button>
   </div>
 
 <% end %>
