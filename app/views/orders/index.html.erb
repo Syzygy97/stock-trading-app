@@ -9,7 +9,7 @@
         <main class="history-dashboard">
           <div>
             <figure class="transaction-graph">
-              <%= line_chart @orders.where(user_id: current_user.id).group(:order_type).group_by_minute(:created_at, n: 30).count %>
+              <%= line_chart @orders.where(user_id: current_user.id).group(:order_type).group_by_minute(:created_at, n: 30).count, height: "100%" %>
             </figure>
           </div>
           <div class="transaction-type">
@@ -18,15 +18,19 @@
               <% if @orders.where(order_type: "BUY", user_id: current_user.id).count == 0 %>
                 <h2>Wow, such empty</h2>
               <% else %>
+                <div>
                 <% @orders.each do |order| %>
                   <% if order.user == current_user && order.order_type == "BUY" %>
                     <ul>
                       <li><%= order.symbol %></li>
                       <li><%= number_to_currency(order.price, :unit => "$") %></li>
                       <li><%= order.quantity %></li>
+                      <li><%= order.created_at.strftime("%d %B, %C%y") %></li>
+                      <li><%= order.created_at.strftime("%H:%M:%S") %></li>
                     </ul>
                   <% end %>
                 <% end %>
+                </div>
               <% end %>
             </figure>
             <figure class="sell-transaction">
@@ -34,15 +38,19 @@
               <% if @orders.where(order_type: "SELL", user_id: current_user.id).count == 0 %>
                 <h2>Wow, such empty</h2>
               <% else %>
+                <div>
                 <% @orders.each do |order| %>
                   <% if order.user == current_user && order.order_type == "SELL" %>
                     <ul>
                       <li><%= order.symbol %></li>
                       <li><%= number_to_currency(order.price, :unit => "$") %></li>
                       <li><%= order.quantity %></li>
+                      <li><%= order.created_at.strftime("%d %B, %C%y") %></li>
+                      <li><%= order.created_at.strftime("%H:%M:%S") %></li>
                     </ul>
                   <% end %>
                 <% end %>
+                </div>
               <% end %>
             </figure>
           </div>
