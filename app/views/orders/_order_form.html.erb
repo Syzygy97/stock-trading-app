@@ -1,30 +1,38 @@
-<%= form_with model: @order do |f| %>
-  
+<div class="new-order-container">
   <div>
-    <%= f.text_field :symbol, value: @stock.symbol, type: :hidden %>
-  </div>
+    <h1>CREATE AN ORDER FOR <br> <%= @stock.company_name%> <small style="color: grey">(<%= @stock.symbol %>)</small></h1>
+    <%= form_with model: @order, class: "new-order-form" do |f| %>
+      
+      <div>
+        <%= f.text_field :symbol, value: @stock.symbol, type: :hidden %>
+      </div>
 
-  <div>
-    <%= f.number_field :user_id, value: current_user.id, type: :hidden %>
-  </div>
+      <div>
+        <%= f.number_field :user_id, value: current_user.id, type: :hidden %>
+      </div>
 
-  <div>
-    <%= f.label :order_type %>
-    <br>
-    <%= f.select :order_type, options_for_select(["BUY", "SELL"]) %>
-  </div>
-  
-  <div>
-    <%= f.label :price %>:
-    $<%= f.number_field :price, value: @stock.price.to_f, readonly: true, style: "pointer-events: none" %>
-  </div>
+      <div class="order-p-q-container">
+        <div class="order-price">
+          <h3><%= f.label :price %>:</h3>
+          <%= f.number_field :price, value: @stock.price.to_f, readonly: true, style: "pointer-events: none" %>
+        </div>
 
-  <div>
-    <%= f.label :quantity %>
-    <%= f.number_field :quantity, step: 1, min: 1 %> (Available: <%= @stock.quantity %>)
-  </div>
+        <div class="order-quantity">
+          <h3><%= f.label :quantity %>: <small style="color: grey">(Available: <%= @stock.quantity %>)</small></h3>
+          <%= f.number_field :quantity, step: 1, min: 1, placeholder: "Enter quantity" %> 
+        </div>
+      </div>
+      
+      <div class="order-type">
+        <h2><%= f.label :order_type %></h2>
+        <br>
+        <%= f.select :order_type, options_for_select(["BUY", "SELL"]) %>
+      </div>
+      
 
-  <div>
-    <%= f.submit %>
+      <div class="new-order-btn">
+        <%= f.submit %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

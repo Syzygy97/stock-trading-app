@@ -43,7 +43,11 @@
             <% else %>
               <li style="color: white">(<%= stock.percent_change.to_f %>%)</li>
             <% end %>
+            <% if current_user.status == "pending" %>
+              <li style="pointer-events: none"><%= link_to "TRANSACT", stock %></li>
+            <% else %> 
               <li><%= link_to "TRANSACT", stock %></li>
+            <% end %>
           </ul>
         <% end %>
       </div>
