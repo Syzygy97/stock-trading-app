@@ -66,6 +66,12 @@ $sec-font: "Montserrat", sans-serif;
       }
     }
 
+    .siso {
+      flex-direction: row;
+      justify-content: end;
+      width: 75%;
+    }
+
     .right {
       width: 90%;
       display: flex;

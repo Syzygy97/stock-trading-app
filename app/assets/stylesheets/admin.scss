@@ -118,7 +118,11 @@ $sec-font: 'Montserrat', sans-serif;
         height: 120px;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: end;
+
+        .single-btn {
+          width: 30%;
+        }
 
         div {
           padding: 0px;
@@ -173,8 +177,20 @@ $sec-font: 'Montserrat', sans-serif;
         border-bottom: 1px solid #E1E1E7;
       }
 
-      .first-column, .second-column, .third-column, .fourth-column {
-        
+      .column-sm {
+        width: 10%;
+      }
+
+      .column-lg {
+        width: 20%;
+      }
+
+      .column-md {
+        width: 15%;
+      }
+
+      .column-eq {
+        width: calc(50% / 3);
       }
 
       .first-column {
