@@ -14,10 +14,12 @@
         <h4>Good Evening, <%= current_user.first_name %>!</h4>
         <% end %>
       <% else %>
+      <div class="nav-link siso">
         <%= link_to "Log in", new_user_session_path %>
         <button>
           <%= link_to "Sign up", new_user_registration_path %>
         </button>
+      </div>
       <% end %>
     </div>
   </div>

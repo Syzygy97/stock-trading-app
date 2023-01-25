@@ -1,16 +1,37 @@
-<h1>THIS IS THE USERS TRANSACTION PAGE</h1>
-
-<% @users.each do |user|%>
-  
-  <h2><small><%= user.id %></small> <%= user.first_name %> <%= user.last_name %> (<small><%= user.username %></small>)</h2>
-  <% @orders.where(user_id: user.id).each do |order| %>
-    <ul>
-      <li>Transaction date: <%= order.created_at %></li>
-      <li>Transaction Type: <%= order.order_type %></li>
-      <li>Stock Symbol: <%= order.symbol %></li>
-      <li>Price of Stock: <%= number_to_currency((order.price.to_f / order.quantity).to_f, :unit => "$") %> </li>
-      <li>Quantity: <%= order.quantity %></li>
-      <li>Total Order Price: <%= order.price %></li>
-    </ul>
-  <% end %>
-<% end %>
+<%= render "shared/navbar-a" %>
+<div class="container-home sc">
+  <div class="list">
+    <div class="list-header">
+      <div>Transactions</div>
+      <div class="buttons">
+        <div class="single-btn"><%= link_to "Back", admins_authenticated_root_path %></div>
+      </div>
+    </div>
+    <div class="list-container">
+      <div class="heading">
+        <div class="column-sm">ID</div>
+        <div class="column-sm">Type</div>
+        <div class="column-eq">Trader</div>
+        <div class="column-sm">Stock</div>
+        <div class="column-sm">Price</div>
+        <div class="column-sm">Quantity</div>
+        <div class="column-eq">Total Order Price</div>
+        <div class="column-eq">Transaction Details</div>
+      </div>
+      <% @users.each do |user|%>
+        <% @orders.where(user_id: user.id).each do |order| %>
+          <div class="trader">
+            <div class="column-sm"><%= order.id %></div>
+            <div class="column-sm"><%= order.order_type %></div>
+            <div class="column-eq"><%= user.first_name %> <%= user.last_name %></div>
+            <div class="column-sm"><%= order.symbol %></div>
+            <div class="column-sm"><%= number_to_currency((order.price.to_f / order.quantity).to_f, :unit => "$") %></div>
+            <div class="column-sm"><%= order.quantity %></div>
+            <div class="column-eq"><%= number_to_currency((order.price), :unit => "$") %></div>
+            <div class="column-eq"><%= order.created_at.localtime.strftime("%B %d, %Y %I:%M %p") %></div>
+          </div>          
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
