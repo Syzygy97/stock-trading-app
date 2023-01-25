@@ -2,13 +2,13 @@
 <div class="container-home">
   <div class="a-modal">
     <div class="close">
-      <div> Add Trader </div>
+      <div> Edit Trader </div>
       <%= link_to "X", admins_authenticated_root_path %>
     </div>
     <div class="modal-form">
       Account Information
 
-      <%= form_with scope: :user, model: @user, url: '/admins/create_user', method: :post do |f| %>
+      <%= form_with model: @user, url: '', method: :patch do |f| %>
 
         <div>
           <%= f.text_field :first_name, autofocus: true, placeholder: "First Name" %>
@@ -27,18 +27,8 @@
           <%= f.email_field :email, autocomplete: "email", placeholder: "Email" %>
         </div>
 
-        <div>
-          <%#= f.label :password %>
-          <%= f.password_field :password, placeholder: "Password (6 characters minimum)" %>
-        </div>
-
-        <div>
-          <%#= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password Confirmation" %>
-        </div>
-
         <div class="actions">
-          <%= f.submit "Add Account" %>
+          <%= f.submit "Edit Account" %>
         </div>
 
       <% end %>

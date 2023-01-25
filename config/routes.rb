@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   
   get 'homes/index'
   
-  # root "homes#index"
   root to: "users#index"
   
   get 'dashboard', to: "users#index", as: "dashboard"
@@ -12,10 +11,6 @@ Rails.application.routes.draw do
   resources :trader_stocks
   resources :orders
   resources :stocks
-  # devise_for :users, path: 'users', controllers: {
-    #   sessions: 'users/sessions',
-    #   registrations: 'users/registrations'
-    # }
   
   devise_for :admins, path: 'admins', controllers: {
     sessions: 'admins/sessions',
@@ -38,7 +33,10 @@ Rails.application.routes.draw do
         put 'admin_pages/approved_user', to: "admin_pages#approve_user"
         get 'add_user', to: 'admin_pages#add_user'
         post 'create_user', to: 'admin_pages#create_user'
-        delete 'users/:id', to: 'admin_pages#destroy'
+        get 'users/:id/edit' => 'admin_pages#edit_user', as: 'edit_user'
+        patch 'users/:id/edit' => 'admin_pages#update_user', as: 'update_user'
+        delete 'users/:id', to: 'admin_pages#destroy', as: 'delete_user'
+        get 'users/:id/view' => 'admin_pages#show_user', as: 'show_user'
       end
     end
   end

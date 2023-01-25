@@ -1,0 +1,19 @@
+<%= render "shared/navbar-a" %>
+<div class="container-home">
+  <div class="a-modal">
+    <div class="close">
+      <div> Trader Profile </div>
+      <%= link_to "X", admins_authenticated_root_path %>
+    </div>
+    <div class="modal-form">
+      <span class="title">First Name: </span><%= @user.first_name %><br><br>
+      <span class="title">Last Name: </span><%= @user.last_name %><br><br>
+      <span class="title">Username: </span><%= @user.username %><br><br>
+      <span class="title">Email: </span><%= @user.email %><br><br><br>
+      <span class="title">Account created: </span><%= @user.created_at.localtime.strftime("%B %d, %Y %I:%M %p") %><br><br>
+      <span class="title">Last updated: </span><%= @user.updated_at.localtime.strftime("%B %d, %Y %I:%M %p") %><br><br><br>
+      <span class="title">Balance: </span><%= number_to_currency(@user.balance, :unit => "$", :separator => ".", :delimiter => ",") %>
+    </div>
+
+  </div>
+</div>
