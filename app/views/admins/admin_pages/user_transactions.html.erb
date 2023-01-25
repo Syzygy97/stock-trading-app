@@ -1,0 +1,16 @@
+<h1>THIS IS THE USERS TRANSACTION PAGE</h1>
+
+<% @users.each do |user|%>
+  
+  <h2><small><%= user.id %></small> <%= user.first_name %> <%= user.last_name %> (<small><%= user.username %></small>)</h2>
+  <% @orders.where(user_id: user.id).each do |order| %>
+    <ul>
+      <li>Transaction date: <%= order.created_at %></li>
+      <li>Transaction Type: <%= order.order_type %></li>
+      <li>Stock Symbol: <%= order.symbol %></li>
+      <li>Price of Stock: <%= number_to_currency((order.price.to_f / order.quantity).to_f, :unit => "$") %> </li>
+      <li>Quantity: <%= order.quantity %></li>
+      <li>Total Order Price: <%= order.price %></li>
+    </ul>
+  <% end %>
+<% end %>

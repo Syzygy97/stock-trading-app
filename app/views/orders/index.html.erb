@@ -1,46 +1,54 @@
-<div id="history-container">
-  <%= render "users/sidebar"%>
-  <div class="history-content">
-    <%= render "users/header"%>
-    <main class="history-dashboard">
-      <div>
-        <figure class="transaction-graph">
-          <%= line_chart @orders.where(user_id: current_user.id).group(:order_type).group_by_minute(:created_at, n: 30).count %>
-        </figure>
-      </div>
-      <div class="transaction-type">
-        <figure class="buy-transaction">
-          <h1>BUY</h1>
-          <% if @orders.where(order_type: "BUY", user_id: current_user.id).count == 0 %>
-            <h2>Wow, such empty</h2>
-          <% else %>
-            <% @orders.each do |order| %>
-              <% if order.user == current_user && order.order_type == "BUY" %>
-                <ul>
-                  <li><%= order.symbol %></li>
-                  <li><%= order.price %></li>
-                  <li><%= order.quantity %></li>
-                </ul>
+<% if user_signed_in? %>
+  <% if current_user.status == "pending" %>
+    <%= render "layouts/pending_page" %>
+  <% else %>
+    <div id="history-container">
+      <%= render "users/sidebar"%>
+      <div class="history-content">
+        <%= render "/shared/navbar" %>
+        <main class="history-dashboard">
+          <div>
+            <figure class="transaction-graph">
+              <%= line_chart @orders.where(user_id: current_user.id).group(:order_type).group_by_minute(:created_at, n: 30).count %>
+            </figure>
+          </div>
+          <div class="transaction-type">
+            <figure class="buy-transaction">
+              <h1>BUY</h1>
+              <% if @orders.where(order_type: "BUY", user_id: current_user.id).count == 0 %>
+                <h2>Wow, such empty</h2>
+              <% else %>
+                <% @orders.each do |order| %>
+                  <% if order.user == current_user && order.order_type == "BUY" %>
+                    <ul>
+                      <li><%= order.symbol %></li>
+                      <li><%= number_to_currency(order.price, :unit => "$") %></li>
+                      <li><%= order.quantity %></li>
+                    </ul>
+                  <% end %>
+                <% end %>
               <% end %>
-            <% end %>
-          <% end %>
-        </figure>
-        <figure class="sell-transaction">
-          <h1>SELL</h1>
-          <% if @orders.where(order_type: "SELL", user_id: current_user.id).count == 0 %>
-            <h2>Wow, such empty</h2>
-          <% else %>
-            <% @orders.each do |order| %>
-              <% if order.user == current_user && order.order_type == "SELL" %>
-                <ul>
-                  <li><%= order.symbol %></li>
-                  <li><%= order.price %></li>
-                  <li><%= order.quantity %></li>
-                </ul>
+            </figure>
+            <figure class="sell-transaction">
+              <h1>SELL</h1>
+              <% if @orders.where(order_type: "SELL", user_id: current_user.id).count == 0 %>
+                <h2>Wow, such empty</h2>
+              <% else %>
+                <% @orders.each do |order| %>
+                  <% if order.user == current_user && order.order_type == "SELL" %>
+                    <ul>
+                      <li><%= order.symbol %></li>
+                      <li><%= number_to_currency(order.price, :unit => "$") %></li>
+                      <li><%= order.quantity %></li>
+                    </ul>
+                  <% end %>
+                <% end %>
               <% end %>
-            <% end %>
-          <% end %>
-        </figure>
+            </figure>
+          </div>
       </div>
-  </div>
-</div>
+    </div>
+  <% end %>
+<% else %>
+  <%= render "users/landing_page" %>
+<% end %>
